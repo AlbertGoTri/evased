@@ -3,10 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/alber/Documents/REPOSITORIES/PrPr2/Evased2/app/src/main/res/drawable/gradient_background.xml" value="0.125" />
-        <entry key="..\:/Users/alber/Documents/REPOSITORIES/PrPr2/Evased2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2085" />
-        <entry key="..\:/Users/alber/Documents/REPOSITORIES/PrPr2/Evased2/app/src/main/res/layout/activity_signin.xml" value="0.17255434782608695" />
-        <entry key="..\:/Users/alber/Documents/REPOSITORIES/PrPr2/Evased2/app/src/main/res/layout/activity_signup.xml" value="0.17255434782608695" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_events_screen.xml" value="0.25" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_signin.xml" value="0.25" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_signup.xml" value="0.25" />
       </map>
     </option>
   </component>
