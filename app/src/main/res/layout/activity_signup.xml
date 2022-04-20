@@ -1,6 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".SignInActivity"
+    tools:ignore="ExtraText">
 
-</androidx.constraintlayout.widget.LinearLayout>
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="225dp"
+        android:src="@drawable/aaaaaalogo" />
+
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="35dp"
+        android:hint="@string/username"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="178dp" />
+
+    <EditText
+        android:id="@+id/surname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginStart="80dp"
+        android:hint="@string/surname"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginStart="80dp"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginStart="80dp"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/passwordConfirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginStart="80dp"
+        android:hint="@string/confirm_password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/AddButton"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/sign_up"
+        android:textSize="23sp"
+        tools:ignore="MissingConstraints" />
+
+</LinearLayout>
