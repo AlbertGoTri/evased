@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Evased" >
         <activity
+            android:name=".MyeventsframeSingleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyMessagesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MyEventsFrameActivity"
+            android:exported="false" />
+        <activity
             android:name=".events_screen_activity"
             android:exported="false" />
         <activity
