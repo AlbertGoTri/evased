@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Evased</string>
+    <string name="new_task">New Task</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="don_t_have_an_account_yet_sign_up_here">Don\'t have an account yet? Sign Up here.</string>
+    <string name="surname">Surname</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="sign_up">SIGN UP</string>
+    <color name="white">#FFFFFF</color>
 </resources>
