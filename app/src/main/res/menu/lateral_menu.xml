@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
+
+    <item
+        android:id="@+id/nav_account"
+        android:title="My Account" />
+
+    <item
+        android:id="@+id/nav_events"
+        android:title="My events" />
+
+    <item
+        android:id="@+id/nav_timeline"
+        android:title="My timeline" />
+
+    <item
+        android:id="@+id/nav_messages"
+        android:title="My messages" />
+
+    <item
+        android:id="@+id/nav_search_users"
+        android:title="Search users" />
+
+    <item
+        android:id="@+id/nav_map"
+        android:title="Map" />
+
+</menu>
