@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_events_screen.xml" value="0.25" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_events_screen.xml" value="0.2" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_maps.xml" value="0.136" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_signin.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_signup.xml" value="0.25" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/event_locations_layout.xml" value="0.24048913043478262" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/horizontal_events_buttons_layout.xml" value="0.12158054711246201" />
       </map>
     </option>
   </component>
