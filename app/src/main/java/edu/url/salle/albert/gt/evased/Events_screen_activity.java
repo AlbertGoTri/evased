@@ -10,45 +10,73 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import edu.url.salle.albert.gt.evased.Adapters.EventsTypeAdapter;
+import edu.url.salle.albert.gt.evased.Adapters.LocationsAdapter;
+import edu.url.salle.albert.gt.evased.entities.EventsTypes;
+import edu.url.salle.albert.gt.evased.entities.Location;
 
 public class Events_screen_activity extends AppCompatActivity {
 
-    private Button btn_art;
-    private Button btn_sport;
-    private Button btn_music;
-    private Button btn_celebrity;
 
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle actionBarDrawerToggle;
+
+
+    private LocationsAdapter locationsAdapter;
+    private EventsTypeAdapter eventsTypeAdapter;
+    private DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_events_screen);
 
-        //drawerLayout = findViewById(R.id.my_drawer_layout);
-        //actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+        lateral_menu();
 
-        //drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        //actionBarDrawerToggle.syncState();
+        List<Location> locations = new ArrayList<>();
+        ImageButton imageButton = null;
+        locations.add(new Location(imageButton, "ana 3yiit"));
+        locations.add(new Location(imageButton, "chari3 zbi"));
+        locations.add(new Location(imageButton, "wa l9lawi"));
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        /*ArrayList<Button> buttonArrayList = new ArrayList<>();
-        buttonArrayList.add(btn_art);
-        buttonArrayList.add(btn_celebrity);
-        buttonArrayList.add(btn_music);
-        buttonArrayList.add(btn_sport);
 
-        RecyclerView recyclerView = null;
-        EventsTypeAdapter adapter = new EventsTypeAdapter(buttonArrayList);
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-         */
+        ArrayList<EventsTypes> buttons_types = new ArrayList<>();
+        Button button = null;
+        buttons_types.add(new EventsTypes(button, "art"));
+        buttons_types.add(new EventsTypes(button, "sport"));
+        buttons_types.add(new EventsTypes(button, "dance"));
+        buttons_types.add(new EventsTypes(button, "music"));
+
+        //set up the RecyclerView
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this)); //< - - - WHY "this" ??
+        locationsAdapter = new LocationsAdapter(this, locations);
+        //locationsAdapter.
+        recyclerView.setAdapter(locationsAdapter);
+
+
+        //set up the RecyclerView
+        RecyclerView recyclerView2 = (RecyclerView) findViewById(R.id.buttons_events_recycler_view);
+        recyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        eventsTypeAdapter = new EventsTypeAdapter(this, buttons_types);
+        recyclerView2.setAdapter(eventsTypeAdapter);
+
         }
+
+    private void lateral_menu() {
+        drawerLayout = findViewById(R.id.my_drawer_layout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
