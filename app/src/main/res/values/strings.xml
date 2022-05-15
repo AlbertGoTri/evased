@@ -17,4 +17,11 @@
     <string name="lorem_ipsum">lorem ipsum</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="rate_this_event">★ RATE THIS EVENT ★</string>
+    <string name="my_events">My events</string>
+    <string name="my_timeline">My timeline</string>
+    <string name="my_messages">My messages</string>
+    <string name="my_account">My Account</string>
+    <string name="search_users">Search users</string>
+    <string name="map">Map</string>
+
 </resources>
