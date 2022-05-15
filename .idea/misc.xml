@@ -3,6 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1445" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/drawable/layout_bg_purple.xml" value="0.1445" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_events_screen.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_maps.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_my_messages.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_past_events_review.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_search_users.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_signin.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_signup.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_timeline.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/event_locations_layout.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/horizontal_events_buttons_layout.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/singleUser.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/singlemessageviewer.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/timeline.xml" value="0.22826086956521738" />
+
         <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_events_screen.xml" value="0.1" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_maps.xml" value="0.136" />
@@ -13,6 +31,7 @@
         <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/lateral_menu_header.xml" value="0.264" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/menu-v26/lateral_menu.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/menu/lateral_menu.xml" value="0.1" />
+
       </map>
     </option>
   </component>
