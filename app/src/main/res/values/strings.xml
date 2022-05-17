@@ -22,4 +22,8 @@
     <string name="my_account">My Account</string>
     <string name="search_users">Search users</string>
     <string name="map">Map</string>
+    <string name="name_task">Name Task</string>
+    <string name="date">DATE</string>
+    <string name="timeline">TIMELINE</string>
+    <string name="messages">Messages</string>
 </resources>
