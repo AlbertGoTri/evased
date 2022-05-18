@@ -3,15 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/TESTER/AndroidStudioProjects/evased/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2265" />
-        <entry key="..\:/Users/TESTER/AndroidStudioProjects/evased/app/src/main/res/layout/activity_events_screen.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/TESTER/AndroidStudioProjects/evased/app/src/main/res/layout/activity_main2.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/TESTER/AndroidStudioProjects/evased/app/src/main/res/layout/activity_signin.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/TESTER/AndroidStudioProjects/evased/app/src/main/res/layout/activity_signup.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/TESTER/AndroidStudioProjects/evased/app/src/main/res/layout/my_events_frame.xml" value="0.264" />
-        <entry key="..\:/Users/TESTER/AndroidStudioProjects/evased/app/src/main/res/layout/my_messages.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/TESTER/AndroidStudioProjects/evased/app/src/main/res/layout/myeventsframe_single.xml" value="0.22826086956521738" />
-        <entry key="..\:/Users/TESTER/AndroidStudioProjects/evased/app/src/main/res/layout/mymessage_single.xml" value="0.22826086956521738" />
+<<<<<<<<< Temporary merge branch 1
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/drawable/ic_baseline_check_box_24.xml" value="0.1445" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_my_messages.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_timeline.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/event_locations_layout.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/singlemessageviewer.xml" value="0.22826086956521738" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/timeline.xml" value="0.22826086956521738" />
+=========
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_events_screen.xml" value="0.1" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_maps.xml" value="0.136" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_signin.xml" value="0.25" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/activity_signup.xml" value="0.25" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/event_locations_layout.xml" value="0.24048913043478262" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/horizontal_events_buttons_layout.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/layout/lateral_menu_header.xml" value="0.264" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/menu-v26/lateral_menu.xml" value="0.25" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/evasedgit/app/src/main/res/menu/lateral_menu.xml" value="0.1" />
+>>>>>>>>> Temporary merge branch 2
       </map>
     </option>
   </component>
