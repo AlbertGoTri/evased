@@ -27,4 +27,6 @@
     <string name="timeline">TIMELINE</string>
     <string name="messages">Messages</string>
     <string name="rate_this_event">★ RATE THIS EVENT ★</string>
+    <string name="event">EVENT</string>
+    <string name="attend">Attend</string>
 </resources>

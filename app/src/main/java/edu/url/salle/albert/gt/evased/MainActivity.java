@@ -43,17 +43,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //events_maps_btn = findViewById(R.id.button_test_events_location);
-        //events_maps_btn.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        /*    public void onClick(View view) {
+        events_maps_btn = findViewById(R.id.button_test_events_location);
+        events_maps_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Events_screen_activity.class);
                 startActivity(intent);
                 finish();
             }
         });
 
-         */
+
     }
 
 
