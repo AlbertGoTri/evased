@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.Menu;
@@ -28,15 +29,20 @@ public class MainActivity extends AppCompatActivity {
     private TextView username;
     private TextView password;
 
+    SharedPreferences preferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        preferences = getSharedPreferences("Userinfo", 0);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
         noAccountBtn = findViewById(R.id.noAccountBtn);
         noAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "SWITCHING TO SIGN UP", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, SignUpActivity.class));
             }
         });
@@ -46,19 +52,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //check the user data
-                if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
-                    Toast.makeText(MainActivity.this, "LOGIN SUCCESSFUL", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(MainActivity.this, "LOGIN FAILED", Toast.LENGTH_SHORT).show();
+                String usernameValue = username.getText().toString();
+                String passwordValue = password.getText().toString();
+
+                String registeredUsername = preferences.getString("name", "");
+                String registeredPassword = preferences.getString("password", "");
+
+                if(usernameValue.equals(registeredUsername) && passwordValue.equals(registeredPassword)) {
+                    Toast.makeText(MainActivity.this, "LOGIN SUCCESSFUL" + usernameValue + passwordValue, Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(MainActivity.this, Events_screen_activity.class));
+                }else{
+                    Toast.makeText(MainActivity.this, "LOGIN FAILED -> " + usernameValue + " != " + registeredUsername + ", " + passwordValue + " != " + registeredPassword, Toast.LENGTH_SHORT).show();
                 }
-                System.out.println("Checking the user data...");
+
             }
         });
-
-        username = findViewById(R.id.username);
-        password = findViewById(R.id.password);
-
-
     }
 
     /*
