@@ -8,11 +8,11 @@
     tools:context=".SignInActivity"
     tools:ignore="ExtraText">
 
+
     <ImageView
         android:layout_width="fill_parent"
         android:layout_height="225dp"
         android:src="@drawable/aaaaaalogo" />
-
 
     <EditText
         android:id="@+id/username"
@@ -36,7 +36,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/forgotPasswordButton"
+        android:id="@+id/noAccountBtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="20dp"
@@ -50,7 +50,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/AddButton"
+        android:id="@+id/signInBtn"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginLeft="100dp"

@@ -1,4 +1,4 @@
-package edu.url.salle.albert.gt.evased.Persistence;
+/*package edu.url.salle.albert.gt.evased.Persistence;
 
 import android.net.Network;
 
@@ -44,3 +44,4 @@ public class Cue {
 // Add the request to the RequestQueue.
 requestQueue.add(stringRequest);
 }
+*/
