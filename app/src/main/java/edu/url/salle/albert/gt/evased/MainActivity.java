@@ -1,26 +1,20 @@
 package edu.url.salle.albert.gt.evased;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
+
+import edu.url.salle.albert.gt.evased.entities.Conversation;
+import edu.url.salle.albert.gt.evased.entities.User;
+import edu.url.salle.albert.gt.evased.lab.UserLab;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +22,18 @@ public class MainActivity extends AppCompatActivity {
     private Button signInBtn;
     private TextView username;
     private TextView password;
+
+    //EXTRA BUTTONS
+    private Button MyMessagesBTN;
+    private Button MyEvents;
+
+    //------------------------INITIALIZE USERS + CONVERSATIONS
+    UserLab userlab = new UserLab(100);
+    ArrayList<User> users = userlab.getUsers();
+    ArrayList<Conversation> conversations = userlab.getConversations();
+
+
+
 
     SharedPreferences preferences;
 
@@ -65,6 +71,22 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "LOGIN FAILED -> " + usernameValue + " != " + registeredUsername + ", " + passwordValue + " != " + registeredPassword, Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+        //--------------------------------------------------------------------MY_MESSAGES_BUTTON----------------------------------------------------------------------------
+        MyMessagesBTN = findViewById(R.id.MyMessages_Button);
+        MyMessagesBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyMessages.class);
+                Bundle bundle1 = new Bundle();
+                Bundle bundle2 = new Bundle();
+                //bundle1.putSerializable("users", users);
+                bundle2.putSerializable("conversations", conversations);
+                //intent.putExtras(bundle1);
+                intent.putExtras(bundle2);
+
+                startActivity(intent);
             }
         });
     }
