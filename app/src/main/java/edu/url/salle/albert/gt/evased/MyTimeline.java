@@ -47,7 +47,7 @@ MyTimeline extends AppCompatActivity implements MyRecyclerViewEvents_TimelineAda
 
 
         //set up the RecyclerView
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.task_recycler_view_23);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new MyRecyclerViewEvents_TimelineAdapter(this, events);
         mAdapter.setClickListener(this);
