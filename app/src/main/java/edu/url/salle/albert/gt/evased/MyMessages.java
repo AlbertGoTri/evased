@@ -29,6 +29,7 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_messages);
 
+        //-----------------------------------------------------------------------GET THE CONVERSATIONS FROM THE MAIN
         ArrayList<Conversation> conversations = new ArrayList<>();
         
         //intent get information
@@ -40,8 +41,7 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
         User signInUser = (User) intent.getSerializableExtra("actualUser");
 
 
-
-        //set up the RecyclerView
+        //-----------------------------------------------------------------------POPULATE THE RECYCLER VIEW
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.message_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mAdapter = new MyRecyclerViewMessagesAdapter(this, conversations, signInUser);
