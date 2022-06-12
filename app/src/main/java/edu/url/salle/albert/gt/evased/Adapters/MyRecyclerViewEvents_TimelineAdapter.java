@@ -13,28 +13,16 @@ import java.util.ArrayList;
 import edu.url.salle.albert.gt.evased.R;
 import edu.url.salle.albert.gt.evased.entities.Conversation;
 import edu.url.salle.albert.gt.evased.entities.Event;
-import edu.url.salle.albert.gt.evased.entities.User;
-import edu.url.salle.albert.gt.evased.lab.EventLab;
-import edu.url.salle.albert.gt.evased.lab.UserLab;
 
 public class MyRecyclerViewEvents_TimelineAdapter extends RecyclerView.Adapter<MyRecyclerViewEvents_TimelineAdapter.EventHolder>{
 
-    //---------------------------------------------------------------------------------INITIALIZE USERS + CONVERSATIONS
-    UserLab userlab = new UserLab();
-    ArrayList<User> users = userlab.getUsers();
-
-    //---------------------------------------------------------------------------------INITIALIZE EVENTS
-    EventLab eventlab = new EventLab( users);
-    private ArrayList<Event> mEvents = eventlab.getEvents();
-
-
-
+    private ArrayList<Event> mEvents;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     public MyRecyclerViewEvents_TimelineAdapter(Context context, ArrayList<Event> events) {
         this.mInflater = LayoutInflater.from(context);
-        //mEvents = events;
+        mEvents = events;
     }
 
     @Override

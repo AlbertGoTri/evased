@@ -15,6 +15,9 @@ import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewEvents_TimelineAdap
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewMessagesAdapter;
 import edu.url.salle.albert.gt.evased.entities.Conversation;
 import edu.url.salle.albert.gt.evased.entities.Event;
+import edu.url.salle.albert.gt.evased.entities.User;
+import edu.url.salle.albert.gt.evased.lab.EventLab;
+import edu.url.salle.albert.gt.evased.lab.UserLab;
 
 public class
 
@@ -22,6 +25,15 @@ public class
 MyTimeline extends AppCompatActivity implements MyRecyclerViewEvents_TimelineAdapter.ItemClickListener {
 
     private MyRecyclerViewEvents_TimelineAdapter mAdapter;
+    //---------------------------------------------------------------------------------INITIALIZE USERS + CONVERSATIONS
+    UserLab userlab = new UserLab();
+    ArrayList<User> users = userlab.getUsers();
+    ArrayList<Conversation> conversations = userlab.getConversations();
+
+    //---------------------------------------------------------------------------------INITIALIZE EVENTS
+    EventLab eventlab = new EventLab( users);
+    ArrayList<Event> events = eventlab.getEvents();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +43,8 @@ MyTimeline extends AppCompatActivity implements MyRecyclerViewEvents_TimelineAda
         //populate the recycler view
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        ArrayList<Event> events = (ArrayList<Event>) bundle.getSerializable("events");
+        //ArrayList<Event> events = (ArrayList<Event>) bundle.getSerializable("events");
+
 
         //set up the RecyclerView
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
