@@ -62,10 +62,15 @@ public class MyRecyclerViewEvents_TimelineAdapter extends RecyclerView.Adapter<M
 
         public void bind(Event event_) {
             mEvent = event_;
-            mEventNameView.setText(mEvent.getName());
-            mDateTextView.setText((CharSequence) mEvent.getEnd_date());
-            mDescriptionView.setText( mEvent.getDescription());
-
+            if(mEvent.getName() == null){
+                mEventNameView.setText("null");
+                mDateTextView.setText("null");
+                mDescriptionView.setText("null");
+            }else{
+                mEventNameView.setText(mEvent.getName());
+                mDateTextView.setText((CharSequence) mEvent.getEnd_date());
+                mDescriptionView.setText( mEvent.getDescription());
+            }
         }
 
         @Override
