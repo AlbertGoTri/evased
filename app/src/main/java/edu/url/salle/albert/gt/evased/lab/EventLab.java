@@ -13,6 +13,7 @@ public class EventLab {
     private ArrayList<Event> events;
 
     public EventLab( ArrayList<User> users){
+        events = new ArrayList<>();
         events.add(new Event("Justin fever Concert","get sick with your friends",
                 new GregorianCalendar(2020, Calendar.FEBRUARY, 11).getTime(), users.get(0)));
         events.add(new Event("El Intermedio show","get sick with your friends",
