@@ -27,7 +27,7 @@ public class MyRecyclerViewEvents_TimelineAdapter extends RecyclerView.Adapter<M
 
     @Override
     public EventHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.singlemessageviewer, parent, false);
+        View view = mInflater.inflate(R.layout.timeline, parent, false);
         return new EventHolder(view);
     }
 
