@@ -12,16 +12,19 @@ import java.util.ArrayList;
 
 import edu.url.salle.albert.gt.evased.R;
 import edu.url.salle.albert.gt.evased.entities.Conversation;
+import edu.url.salle.albert.gt.evased.entities.User;
 
 public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecyclerViewMessagesAdapter.ConversationHolder>{
 
     private ArrayList<Conversation> mConversations;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
+    private User actualUser;
 
-    public MyRecyclerViewMessagesAdapter(Context context, ArrayList<Conversation> conversations) {
+    public MyRecyclerViewMessagesAdapter(Context context, ArrayList<Conversation> conversations, User actualUser) {
         this.mInflater = LayoutInflater.from(context);
         mConversations = conversations;
+        this.actualUser = actualUser;
     }
 
     @Override
@@ -61,7 +64,12 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
 
         public void bind(Conversation conv_) {
             mConv = conv_;
-            mUserTextView.setText(mConv.getReceiver().getName());
+            if(actualUser == mConv.getSender()){
+                mUserTextView.setText(mConv.getReceiver().getName());
+            }
+            else{
+                mUserTextView.setText(mConv.getSender().getName());
+            }
             mDateTextView.setText(mConv.getLastMessage().getDate());
             //we can implement and if statement to show different the last message depending of the sender
             mLastMessageView.setText( mConv.getLastMessage().getContent() );

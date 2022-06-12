@@ -51,14 +51,13 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
         for(Conversation conv: conversations){
             if(conv.getReceiver() == users.get(0) || conv.getSender() == users.get(0) ){
                 final_conversations.add(conv);
-
             }
         }
 
         //set up the RecyclerView
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.message_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new MyRecyclerViewMessagesAdapter(this, final_conversations);
+        mAdapter = new MyRecyclerViewMessagesAdapter(this, final_conversations, users.get(0));
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
         

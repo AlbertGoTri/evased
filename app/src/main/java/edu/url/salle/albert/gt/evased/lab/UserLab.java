@@ -36,44 +36,44 @@ public class UserLab {
         conversations.get(0).addMessage("Si", users.get(0));
 
         conversations.add(new Conversation(users.get(0), users.get(2)));
-        conversations.get(0).addMessage("Tus muertoh!", users.get(0));
-        conversations.get(0).addMessage("Que dices de mih muertoh cara Serpiente?", users.get(2));
+        conversations.get(1).addMessage("Tus muertoh!", users.get(0));
+        conversations.get(1).addMessage("Que dices de mih muertoh cara Serpiente?", users.get(2));
 
         conversations.add(new Conversation(users.get(0), users.get(3)));
-        conversations.get(0).addMessage("Tus muertoh!", users.get(3));
-        conversations.get(0).addMessage("Que dices de mih muertoh cara Serpiente?", users.get(0));
+        conversations.get(2).addMessage("Tus muertoh!", users.get(3));
+        conversations.get(2).addMessage("Que dices de mih muertoh cara Serpiente?", users.get(0));
 
         conversations.add(new Conversation(users.get(0), users.get(4)));
-        conversations.get(0).addMessage("Tus muertoh!", users.get(0));
-        conversations.get(0).addMessage("Ca**************brooooooooooooooonnnnnnnnnnnn", users.get(0));
+        conversations.get(3).addMessage("Tus muertoh!", users.get(0));
+        conversations.get(3).addMessage("Ca**************brooooooooooooooonnnnnnnnnnnn", users.get(0));
 
         conversations.add(new Conversation(users.get(0), users.get(5)));
-        conversations.get(0).addMessage("Tus muertoh!", users.get(5));
-        conversations.get(0).addMessage("Que dices de mih muertoh cara Serpiente?", users.get(0));
+        conversations.get(4).addMessage("Tus muertoh!", users.get(5));
+        conversations.get(4).addMessage("Que dices de mih muertoh cara Serpiente?", users.get(0));
 
         conversations.add(new Conversation(users.get(0), users.get(6)));
-        conversations.get(0).addMessage("Tus muertoh!", users.get(6));
-        conversations.get(0).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(6));
+        conversations.get(5).addMessage("Tus muertoh!", users.get(6));
+        conversations.get(5).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(6));
 
         conversations.add(new Conversation(users.get(1), users.get(6)));
-        conversations.get(0).addMessage("Tus muertoh!", users.get(6));
-        conversations.get(0).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(1));
+        conversations.get(6).addMessage("Tus muertoh!", users.get(6));
+        conversations.get(6).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(1));
 
         conversations.add(new Conversation(users.get(2), users.get(6)));
-        conversations.get(0).addMessage("Tus muertoh!", users.get(6));
-        conversations.get(0).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(2));
+        conversations.get(7).addMessage("Tus muertoh!", users.get(6));
+        conversations.get(7).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(2));
 
         conversations.add(new Conversation(users.get(3), users.get(4)));
-        conversations.get(0).addMessage("Tus muertoh!", users.get(4));
-        conversations.get(0).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(3));
+        conversations.get(8).addMessage("Tus muertoh!", users.get(4));
+        conversations.get(8).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(3));
 
         conversations.add(new Conversation(users.get(4), users.get(2)));
-        conversations.get(0).addMessage("Tus muertoh!", users.get(2));
-        conversations.get(0).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(4));
+        conversations.get(9).addMessage("Tus muertoh!", users.get(2));
+        conversations.get(9).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(4));
 
         conversations.add(new Conversation(users.get(6), users.get(3)));
-        conversations.get(0).addMessage("Tus muertoh!", users.get(6));
-        conversations.get(0).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(3));
+        conversations.get(10).addMessage("Tus muertoh!", users.get(6));
+        conversations.get(10).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(3));
 
     }
 
