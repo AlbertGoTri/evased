@@ -16,7 +16,7 @@
             android:name=".past_events_review"
             android:exported="false" />
         <activity
-            android:name=".timeline"
+            android:name=".MyTimeline"
             android:exported="false" />
         <activity
             android:name=".MyMessages"

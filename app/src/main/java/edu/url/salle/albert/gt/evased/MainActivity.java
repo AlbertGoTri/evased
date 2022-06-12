@@ -13,7 +13,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import edu.url.salle.albert.gt.evased.entities.Conversation;
+import edu.url.salle.albert.gt.evased.entities.Event;
 import edu.url.salle.albert.gt.evased.entities.User;
+import edu.url.salle.albert.gt.evased.lab.EventLab;
 import edu.url.salle.albert.gt.evased.lab.UserLab;
 
 
@@ -23,19 +25,23 @@ public class MainActivity extends AppCompatActivity {
     private TextView username;
     private TextView password;
 
-    //EXTRA BUTTONS
+    //---------------------------------------------------------------------------------EXTRA BUTTONS
     private Button MyMessagesBTN;
-    private Button MyEvents;
+    private Button MyTimelineBTN;
 
-    //------------------------INITIALIZE USERS + CONVERSATIONS
-    UserLab userlab = new UserLab(100);
+    //---------------------------------------------------------------------------------INITIALIZE USERS + CONVERSATIONS
+    UserLab userlab = new UserLab();
     ArrayList<User> users = userlab.getUsers();
     ArrayList<Conversation> conversations = userlab.getConversations();
 
+    //---------------------------------------------------------------------------------INITIALIZE EVENTS
+    EventLab eventlab = new EventLab( users);
+    ArrayList<Event> events = eventlab.getEvents();
 
 
 
     SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,12 +85,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyMessages.class);
-                Bundle bundle1 = new Bundle();
-                Bundle bundle2 = new Bundle();
-                //bundle1.putSerializable("users", users);
-                bundle2.putSerializable("conversations", conversations);
-                //intent.putExtras(bundle1);
-                intent.putExtras(bundle2);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("conversations", conversations);
+                intent.putExtras(bundle);
+                intent.putExtra("user", users.get(0));
+
+                startActivity(intent);
+            }
+        });
+
+        //--------------------------------------------------------------------MY_TIMELINE_BUTTON----------------------------------------------------------------------------
+        MyTimelineBTN = findViewById(R.id.MyTimeline_Button);
+        MyTimelineBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyTimeline.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("events", events);
+                intent.putExtras(bundle);
 
                 startActivity(intent);
             }
