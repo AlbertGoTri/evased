@@ -25,20 +25,23 @@ public class
 MyTimeline extends AppCompatActivity implements MyRecyclerViewEvents_TimelineAdapter.ItemClickListener {
 
     private MyRecyclerViewEvents_TimelineAdapter mAdapter;
-    //---------------------------------------------------------------------------------INITIALIZE USERS + CONVERSATIONS
-    UserLab userlab = new UserLab();
-    ArrayList<User> users = userlab.getUsers();
-    ArrayList<Conversation> conversations = userlab.getConversations();
 
-    //---------------------------------------------------------------------------------INITIALIZE EVENTS
-    EventLab eventlab = new EventLab( users);
-    ArrayList<Event> events = eventlab.getEvents();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
+
+
+        //---------------------------------------------------------------------------------INITIALIZE USERS + CONVERSATIONS
+        UserLab userlab = new UserLab();
+        ArrayList<User> users = userlab.getUsers();
+
+
+        //---------------------------------------------------------------------------------INITIALIZE EVENTS
+        EventLab eventlab = new EventLab( users);
+        ArrayList<Event> events = eventlab.getEvents();
 
         //populate the recycler view
         Intent intent = this.getIntent();

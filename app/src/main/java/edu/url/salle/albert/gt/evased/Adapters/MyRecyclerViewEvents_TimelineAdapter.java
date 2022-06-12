@@ -53,9 +53,9 @@ public class MyRecyclerViewEvents_TimelineAdapter extends RecyclerView.Adapter<M
 
         public EventHolder(View itemView) {
             super(itemView);
-            mEventNameView = (TextView) itemView.findViewById(R.id.Event_Name_Task);
-            mDateTextView = (TextView) itemView.findViewById(R.id.Event_end_date);
-            mDescriptionView = (TextView) itemView.findViewById(R.id.description_event);
+            mEventNameView = (TextView) itemView.findViewById(R.id.Event_Name_Task_23);
+            //mDateTextView = (TextView) itemView.findViewById(R.id.Event_end_date_23);
+            mDescriptionView = (TextView) itemView.findViewById(R.id.description_event_23);
             itemView.setOnClickListener(this);
 
         }
@@ -63,7 +63,7 @@ public class MyRecyclerViewEvents_TimelineAdapter extends RecyclerView.Adapter<M
         public void bind(Event event_) {
             mEvent = event_;
             String stringNULL = "NULL";
-            if(mEvent.getName() == null){
+            if(mEvent == null){
                 mEventNameView.setText(stringNULL);
                 mDateTextView.setText(stringNULL);
                 mDescriptionView.setText(stringNULL);
