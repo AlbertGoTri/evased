@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import edu.url.salle.albert.gt.evased.R;
@@ -62,16 +63,11 @@ public class MyRecyclerViewEvents_TimelineAdapter extends RecyclerView.Adapter<M
 
         public void bind(Event event_) {
             mEvent = event_;
-            String stringNULL = "NULL";
-            if(mEvent == null){
-                mEventNameView.setText(stringNULL);
-                mDateTextView.setText(stringNULL);
-                mDescriptionView.setText(stringNULL);
-            }else{
-                mEventNameView.setText(mEvent.getName());
-                mDateTextView.setText((CharSequence) mEvent.getEnd_date());
-                mDescriptionView.setText( mEvent.getDescription());
-            }
+            SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+
+            mEventNameView.setText(mEvent.getName());
+            mDateTextView.setText(formatter.format(mEvent.getEnd_date()) );
+            mDescriptionView.setText( mEvent.getDescription());
         }
 
         @Override
