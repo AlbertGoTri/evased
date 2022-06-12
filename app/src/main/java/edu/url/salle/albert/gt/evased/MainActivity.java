@@ -20,6 +20,8 @@ import edu.url.salle.albert.gt.evased.lab.UserLab;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
     private Button noAccountBtn;
     private Button signInBtn;
     private TextView username;
@@ -84,11 +86,28 @@ public class MainActivity extends AppCompatActivity {
         MyMessagesBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //get the user that has the sign in
+                User actualUser = users.get(0);
+
+                //arraylist with the converations with the user participates
+                ArrayList<Conversation> final_conversations = new ArrayList<>();
+
+                //get only the conversations where user participates
+                for(Conversation conv: conversations){
+                    if(conv.getReceiver() == users.get(0) || conv.getSender() == users.get(0) ){
+                        final_conversations.add(conv);
+                    }
+                }
+
                 Intent intent = new Intent(getApplicationContext(), MyMessages.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("conversations", conversations);
-                intent.putExtras(bundle);
-                //intent.putExtra("user", users.get(0));
+                for(int i = 0; i < final_conversations.size(); i++){
+                    intent.putExtra("conv" + i, final_conversations.get(i));
+                }
+                intent.putExtra("actualUser", actualUser);
+                intent.putExtra("NumOfConv", final_conversations.size());
+
+
+
 
                 startActivity(intent);
             }
