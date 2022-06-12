@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("conversations", conversations);
                 intent.putExtras(bundle);
-                intent.putExtra("user", users.get(0));
+                //intent.putExtra("user", users.get(0));
 
                 startActivity(intent);
             }
