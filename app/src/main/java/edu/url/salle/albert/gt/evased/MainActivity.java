@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
                 //TODO: instead of getting the user 0, get the user that has signed in the app.
                 User actualUser = manager.getUsers().get(0);
-                intent.putExtra("actualUser", actualUser);
+                //intent.putExtra("actualUser", actualUser);
 
                 //-------------------------------------------PASS THE MANAGER THAT INCLUDES ALL THE INFO
                 intent.putExtra("manager", manager);

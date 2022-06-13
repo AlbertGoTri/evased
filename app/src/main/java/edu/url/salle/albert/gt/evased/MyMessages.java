@@ -27,6 +27,11 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        UserLab labestro = new UserLab();
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_messages);
 
@@ -37,13 +42,13 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
         Intent intent = this.getIntent();
         UserConvEventManager manager = (UserConvEventManager) intent.getSerializableExtra("manager");
 
-        User signInUser = (User) intent.getSerializableExtra("actualUser");
-
+        //User signInUser = (User) intent.getSerializableExtra("actualUser");
+        System.out.println(manager.getEvents().get(0).getName() + " -------------------- "+manager.getEvents().get(1).getName());
 
         //-----------------------------------------------------------------------POPULATE THE RECYCLER VIEW
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.message_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new MyRecyclerViewMessagesAdapter(this, manager.getRelatedConversations(signInUser), signInUser);
+        mAdapter = new MyRecyclerViewMessagesAdapter(this, manager.getRelatedConversations(labestro.getUsers().get(0)), labestro.getUsers().get(0));
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
         
