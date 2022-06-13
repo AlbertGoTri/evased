@@ -29,7 +29,7 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
 
     @Override
     public ConversationHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.singlemessageviewer, parent, false);
+        View view = mInflater.inflate(R.layout.single_conversation_viewer, parent, false);
         return new ConversationHolder(view);
     }
 
@@ -85,6 +85,7 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
 
 
         }
+
 
         @Override
         public void onClick(View view) {

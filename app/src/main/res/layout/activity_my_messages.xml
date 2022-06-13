@@ -58,7 +58,7 @@
             android:layout_margin="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="MissingConstraints"
-            tools:listitem="@layout/singlemessageviewer"
+            tools:listitem="@layout/single_conversation_viewer"
 
             tools:layout_editor_absoluteX="1dp"/>
 
