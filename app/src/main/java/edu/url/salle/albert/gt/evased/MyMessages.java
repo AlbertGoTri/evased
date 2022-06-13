@@ -48,7 +48,8 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
         //-----------------------------------------------------------------------POPULATE THE RECYCLER VIEW
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.message_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new MyRecyclerViewMessagesAdapter(this, manager.getConversations(), signInUser);
+        System.out.println("sign in user: ------------------" + signInUser.getName());
+        mAdapter = new MyRecyclerViewMessagesAdapter(this, manager.getRelatedConversations(signInUser), signInUser);
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
         
