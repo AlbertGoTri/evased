@@ -78,6 +78,7 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
             if(mConv.getLastMessage().getSender() == actualUser){
                 String setextt = youSending + mConv.getLastMessage().getContent();
                 mLastMessageView.setText(setextt);
+                System.out.println("Entered in the YOU: ");
             }else{
                 mLastMessageView.setText(mConv.getLastMessage().getContent());
             }
