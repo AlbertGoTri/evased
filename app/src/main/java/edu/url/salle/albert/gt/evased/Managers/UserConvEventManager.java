@@ -28,7 +28,7 @@ public class UserConvEventManager implements Serializable {
         this.users = userlab.getUsers();
     }
 
-    //--------------------------------------------------------------------------------------Special Functions
+    //--------------------------------------------------------------------------------------Special Functions GETTERS
 
     public ArrayList<Conversation> getRelatedConversations(User user) {
         //arraylist with the converations with the user participates
@@ -43,22 +43,6 @@ public class UserConvEventManager implements Serializable {
             }
         }
         return final_conversations;
-    }
-
-
-    //---------------------------------------------------------------------------------------GETTERS
-
-
-    public ArrayList<User> getUsers() {
-        return users;
-    }
-
-    public ArrayList<Conversation> getConversations() {
-        return conversations;
-    }
-
-    public ArrayList<Event> getEvents() {
-        return events;
     }
 
     public Conversation getOneConveration(User signInUser, User otherUser) {
@@ -81,4 +65,29 @@ public class UserConvEventManager implements Serializable {
             return item.getSender();
         }
     }
+
+
+    //---------------------------------------------------------------------------------------GETTERS
+
+
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    public ArrayList<Conversation> getConversations() {
+        return conversations;
+    }
+
+    public ArrayList<Event> getEvents() {
+        return events;
+    }
+
+
+    //--------------------------------------------------------------------------------------Special Functions SETTERS
+
+    public void addMessage(String content, User sender, User receiver){
+        Conversation conv = this.getOneConveration(sender, receiver);
+        conv.addMessage(content, sender);
+    }
+
 }

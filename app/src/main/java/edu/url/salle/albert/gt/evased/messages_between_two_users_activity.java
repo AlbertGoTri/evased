@@ -62,6 +62,8 @@ public class messages_between_two_users_activity extends AppCompatActivity imple
             public void onClick(View view) {
                 Toast.makeText(messages_between_two_users_activity.this, "MESSAGE SENT", Toast.LENGTH_SHORT).show();
                 messageToSend = findViewById(R.id.newMessageEdittext);
+                manager.addMessage(messageToSend.getText().toString(), signInUser, otherUser);
+                updateSharedPreferences();
 
             }
         });
@@ -73,6 +75,7 @@ public class messages_between_two_users_activity extends AppCompatActivity imple
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + mAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
+
     private void updateSharedPreferences(){
         mAdapter = new MyRecyclerViewWhatsappAdapter(this, manager.getOneConveration(signInUser, otherUser), signInUser, otherUser );
         mAdapter.setClickListener(this);
