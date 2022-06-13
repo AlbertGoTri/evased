@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewEvents_TimelineAdapter;
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewMessagesAdapter;
+import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
 import edu.url.salle.albert.gt.evased.entities.Conversation;
 import edu.url.salle.albert.gt.evased.entities.Event;
 import edu.url.salle.albert.gt.evased.entities.User;
@@ -34,25 +35,18 @@ MyTimeline extends AppCompatActivity implements MyRecyclerViewEvents_TimelineAda
         setContentView(R.layout.activity_timeline);
 
 
-        //---------------------------------------------------------------------------------INITIALIZE USERS + CONVERSATIONS
-        UserLab userlab = new UserLab();
-        ArrayList<User> users = userlab.getUsers();
 
-
-        //---------------------------------------------------------------------------------INITIALIZE EVENTS
-        EventLab eventlab = new EventLab( users);
-        ArrayList<Event> events = eventlab.getEvents();
 
         //populate the recycler view
         Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
-        //ArrayList<Event> events = (ArrayList<Event>) bundle.getSerializable("events");
+        UserConvEventManager manager = (UserConvEventManager) intent.getSerializableExtra("manager");
+
 
 
         //set up the RecyclerView
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.task_recycler_view_23);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new MyRecyclerViewEvents_TimelineAdapter(this, events);
+        mAdapter = new MyRecyclerViewEvents_TimelineAdapter(this, manager.getEvents());
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
 

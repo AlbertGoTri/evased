@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
 import edu.url.salle.albert.gt.evased.entities.Conversation;
 import edu.url.salle.albert.gt.evased.entities.Event;
 import edu.url.salle.albert.gt.evased.entities.User;
@@ -31,14 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private Button MyMessagesBTN;
     private Button MyTimelineBTN;
 
-    //---------------------------------------------------------------------------------INITIALIZE USERS + CONVERSATIONS
-    UserLab userlab = new UserLab();
-    ArrayList<User> users = userlab.getUsers();
-    ArrayList<Conversation> conversations = userlab.getConversations();
-
-    //---------------------------------------------------------------------------------INITIALIZE EVENTS
-    EventLab eventlab = new EventLab( users);
-    ArrayList<Event> events = eventlab.getEvents();
+    //----------------------------------------------------------------------------------CREATE ALL DATA (EVENTS, USERS, CONVERSATIONS)
+    UserConvEventManager manager = new UserConvEventManager();
 
 
 
@@ -86,19 +81,12 @@ public class MainActivity extends AppCompatActivity {
         MyMessagesBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //get the user that has the sign in
-                User actualUser = users.get(0);
+                //TODO: instead of getting the user 0, get the user that has signed in the app.
+                User actualUser = manager.getUsers().get(0);
 
-                //arraylist with the converations with the user participates
-                ArrayList<Conversation> final_conversations = new ArrayList<>();
+                ArrayList<Conversation> final_conversations = manager.getRelatedConversations(actualUser);
 
-                //get only the conversations where user participates
-                for(Conversation conv: conversations){
-                    if(conv.getReceiver() == users.get(0) || conv.getSender() == users.get(0) ){
-                        final_conversations.add(conv);
-                    }
-                }
-
+                //--------------------------------------------------------------------We transportate the info
                 Intent intent = new Intent(getApplicationContext(), MyMessages.class);
                 for(int i = 0; i < final_conversations.size(); i++){
                     intent.putExtra("conv" + i, final_conversations.get(i));
@@ -119,9 +107,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyTimeline.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("events", events);
-                intent.putExtras(bundle);
+                intent.putExtra("manager", manager);
 
                 startActivity(intent);
             }
