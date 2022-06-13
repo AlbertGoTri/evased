@@ -27,6 +27,8 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
     private User SignInUser;
     private UserConvEventManager managerGeneral;
 
+    private RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +49,10 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
 
 
         //-----------------------------------------------------------------------POPULATE THE RECYCLER VIEW
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.message_recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.message_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        updateSharedPreferences();
 
-        mAdapter = new MyRecyclerViewMessagesAdapter(this, manager.getRelatedConversations(signInUser), signInUser);
-        mAdapter.setClickListener(this);
-        recyclerView.setAdapter(mAdapter);
         
     }
 
@@ -72,8 +72,14 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
         if (requestCode == 1) {
             if(resultCode == RESULT_OK) {
                 this.managerGeneral = (UserConvEventManager) data.getSerializableExtra("managerV2");
+                updateSharedPreferences();
 
             }
         }
+    }
+    private void updateSharedPreferences(){
+        mAdapter = new MyRecyclerViewMessagesAdapter(this, managerGeneral.getRelatedConversations(SignInUser), SignInUser);
+        mAdapter.setClickListener(this);
+        recyclerView.setAdapter(mAdapter);
     }
 }
