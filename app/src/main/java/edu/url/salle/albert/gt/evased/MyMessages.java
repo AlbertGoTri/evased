@@ -64,6 +64,16 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
         intent.putExtra("manager", managerGeneral);
         intent.putExtra("otherUser", managerGeneral.getTheOtherUser(mAdapter.getItem(position), SignInUser));
 
-        startActivity(intent);
+        startActivityForResult(intent, 1);
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                this.managerGeneral = (UserConvEventManager) data.getSerializableExtra("managerV2");
+
+            }
+        }
     }
 }

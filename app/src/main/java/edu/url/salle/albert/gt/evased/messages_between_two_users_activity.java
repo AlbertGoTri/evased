@@ -33,6 +33,7 @@ public class messages_between_two_users_activity extends AppCompatActivity imple
     //--------------------------------------------------------------------------SEND MESSAGES VARIABLES
     private EditText messageToSend;
     private ImageButton sendButton;
+    private Button goBackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,19 @@ public class messages_between_two_users_activity extends AppCompatActivity imple
                 messageToSend = findViewById(R.id.newMessageEdittext);
                 manager.addMessage(messageToSend.getText().toString(), signInUser, otherUser);
                 updateSharedPreferences();
+
+            }
+        });
+        //------------------------------------------------------------------------GO BACK TO ALL CONVERSATIONS
+        goBackButton = findViewById(R.id.go_back_to_all_conv_button);
+        goBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent();
+                intent.putExtra("managerV2", manager);
+                setResult(RESULT_OK, intent);
+                finish();
 
             }
         });

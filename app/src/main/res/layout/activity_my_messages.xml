@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="0dp"
-            android:text="@string/messages"
+            android:text="CHATS"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="25dp"

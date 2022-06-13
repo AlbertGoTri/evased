@@ -30,18 +30,34 @@
                 app:srcCompat="@drawable/aaaaaalogo" />
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity= "center"
+            android:orientation= "horizontal">
+
+            <Button
+                android:id="@+id/go_back_to_all_conv_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="BACK" />
 
         <TextView
             android:id="@+id/name_messages_receiver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            android:ems="12"
             android:layout_marginTop="0dp"
             android:text="JOSE"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -67,6 +83,7 @@
 
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -88,6 +105,8 @@
             android:layout_height="wrap_content"
 
             app:srcCompat="@drawable/ic_baseline_send_24" />
+
+
 
     </LinearLayout>
 
