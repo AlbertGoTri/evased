@@ -43,12 +43,12 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
         UserConvEventManager manager = (UserConvEventManager) intent.getSerializableExtra("manager");
 
         //User signInUser = (User) intent.getSerializableExtra("actualUser");
-        System.out.println(manager.getEvents().get(0).getName() + " -------------------- "+manager.getEvents().get(1).getName());
+
 
         //-----------------------------------------------------------------------POPULATE THE RECYCLER VIEW
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.message_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new MyRecyclerViewMessagesAdapter(this, manager.getRelatedConversations(labestro.getUsers().get(0)), labestro.getUsers().get(0));
+        mAdapter = new MyRecyclerViewMessagesAdapter(this, manager.getConversations(), labestro.getUsers().get(0));
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
         
