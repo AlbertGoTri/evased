@@ -38,6 +38,7 @@ public class UserConvEventManager implements Serializable {
         for(Conversation conv: this.conversations){
             if(conv.getReceiver() == user || conv.getSender() == user ){
                 final_conversations.add(conv);
+                System.out.println("messages:     " + conv.getLastMessage().getContent());
             }
         }
         return final_conversations;

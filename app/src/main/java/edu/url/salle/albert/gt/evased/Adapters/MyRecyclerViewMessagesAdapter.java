@@ -52,6 +52,7 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
         private TextView mDateTextView;
         private TextView mLastMessageView;
 
+        private String youSending = "You: ";
 
         public ConversationHolder(View itemView) {
             super(itemView);
@@ -63,6 +64,7 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
         }
 
         public void bind(Conversation conv_) {
+
             mConv = conv_;
             if(actualUser == mConv.getSender()){
                 mUserTextView.setText(mConv.getReceiver().getName());
@@ -70,9 +72,16 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
             else{
                 mUserTextView.setText(mConv.getSender().getName());
             }
+
             mDateTextView.setText(mConv.getLastMessage().getDate());
             //we can implement and if statement to show different the last message depending of the sender
-            mLastMessageView.setText( mConv.getLastMessage().getContent() );
+            if(mConv.getLastMessage().getSender() == actualUser){
+                String setextt = youSending + mConv.getLastMessage().getContent();
+                mLastMessageView.setText(setextt);
+            }else{
+                mLastMessageView.setText(mConv.getLastMessage().getContent());
+            }
+
 
         }
 
