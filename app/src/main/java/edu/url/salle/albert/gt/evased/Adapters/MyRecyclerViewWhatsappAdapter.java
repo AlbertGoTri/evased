@@ -75,7 +75,7 @@ public class MyRecyclerViewWhatsappAdapter extends RecyclerView.Adapter<MyRecycl
 
             mMess = mess_;
             if(actualUser.getName().equals(mMess.getSender().getName())){
-                mUserTextView.setText(actualUser.getName() + separator);
+                mUserTextView.setText("You: ");
             }
             else{
                 mUserTextView.setText(otherUser.getName() + separator);

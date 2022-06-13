@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity= "center"
+    android:gravity= "top"
     android:background="@drawable/gradient_background"
     android:orientation= "vertical">
 
@@ -47,8 +47,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity= "center"
+        android:layout_height="wrap_content"
+        android:gravity= "top"
         android:orientation= "vertical">
 
 
@@ -65,5 +65,30 @@
 
 
 
+
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity= "bottom"
+        android:orientation= "horizontal">
+
+        <EditText
+            android:id="@+id/newMessageEdittext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:ems="17"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <ImageButton
+            android:id="@+id/sendmessagebutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:srcCompat="@drawable/ic_baseline_send_24" />
+
+    </LinearLayout>
+
 </LinearLayout>

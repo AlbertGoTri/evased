@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,9 +22,17 @@ import edu.url.salle.albert.gt.evased.entities.User;
 
 public class messages_between_two_users_activity extends AppCompatActivity implements MyRecyclerViewWhatsappAdapter.ItemClickListener {
 
+    private UserConvEventManager manager;
+    private User signInUser;
+    private User otherUser;
+    private RecyclerView recyclerView;
 
     private TextView nameOnDisplay;
     private MyRecyclerViewWhatsappAdapter mAdapter;
+
+    //--------------------------------------------------------------------------SEND MESSAGES VARIABLES
+    private EditText messageToSend;
+    private ImageButton sendButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,21 +41,30 @@ public class messages_between_two_users_activity extends AppCompatActivity imple
 
         //-----------------------------------------------------------------------GET THE MESSAGES FROM THE MYMESSAGES
         Intent intent = this.getIntent();
-        UserConvEventManager manager = (UserConvEventManager) intent.getSerializableExtra("manager");
-        User signInUser = (User) intent.getSerializableExtra("actualUser");
-        User otherUser = (User) intent.getSerializableExtra("otherUser");
+        this.manager = (UserConvEventManager) intent.getSerializableExtra("manager");
+        this.signInUser = (User) intent.getSerializableExtra("actualUser");
+        this.otherUser = (User) intent.getSerializableExtra("otherUser");
 
         //-----------------------------------------------------------------------NAME ON DISPLAY
         this.nameOnDisplay = findViewById(R.id.name_messages_receiver);
         nameOnDisplay.setText(otherUser.getName());
 
         //-----------------------------------------------------------------------POPULATE THE RECYCLER VIEW
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.messages_recycler_view_23);
+        this.recyclerView = (RecyclerView) findViewById(R.id.messages_recycler_view_23);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        updateSharedPreferences();
 
-        mAdapter = new MyRecyclerViewWhatsappAdapter(this, manager.getOneConveration(signInUser, otherUser), signInUser, otherUser );
-        mAdapter.setClickListener(this);
-        recyclerView.setAdapter(mAdapter);
+
+        //-----------------------------------------------------------------------SEND A MESSAGE
+        sendButton = findViewById(R.id.sendmessagebutton);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(messages_between_two_users_activity.this, "MESSAGE SENT", Toast.LENGTH_SHORT).show();
+                messageToSend = findViewById(R.id.newMessageEdittext);
+
+            }
+        });
 
 
 
@@ -52,5 +72,10 @@ public class messages_between_two_users_activity extends AppCompatActivity imple
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + mAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+    }
+    private void updateSharedPreferences(){
+        mAdapter = new MyRecyclerViewWhatsappAdapter(this, manager.getOneConveration(signInUser, otherUser), signInUser, otherUser );
+        mAdapter.setClickListener(this);
+        recyclerView.setAdapter(mAdapter);
     }
 }
