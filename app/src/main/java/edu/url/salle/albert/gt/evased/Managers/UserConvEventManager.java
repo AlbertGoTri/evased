@@ -37,7 +37,7 @@ public class UserConvEventManager implements Serializable {
         //get only the conversations where user participates
         for(Conversation conv: this.conversations){
             System.out.println("all message:  ------------ " + conv.getLastMessage().getContent());
-            if(conv.getReceiver() == user || conv.getSender() == user ){
+            if(conv.getReceiver().getName().equals(user.getName()) || conv.getSender().getName().equals(user.getName())){
                 final_conversations.add(conv);
                 System.out.println("messages:     " + conv.getLastMessage().getContent());
             }
