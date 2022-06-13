@@ -74,12 +74,11 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
             }
 
             mDateTextView.setText(mConv.getLastMessage().getDate());
-            //we can implement and if statement to show different the last message depending of the sender
-            System.out.println(mConv.getLastMessage().getSender().getName() + "==" + actualUser.getName());
+
             if(mConv.getLastMessage().getSender().getName().equals(actualUser.getName())){
                 String setextt = youSending + mConv.getLastMessage().getContent();
                 mLastMessageView.setText(setextt);
-                System.out.println("Entered in the YOU: ");
+
             }else{
                 mLastMessageView.setText(mConv.getLastMessage().getContent());
             }

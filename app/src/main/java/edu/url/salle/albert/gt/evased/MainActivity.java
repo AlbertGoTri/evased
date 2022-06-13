@@ -91,10 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("manager", manager);
 
 
-
-
-
-
                 startActivity(intent);
             }
         });
