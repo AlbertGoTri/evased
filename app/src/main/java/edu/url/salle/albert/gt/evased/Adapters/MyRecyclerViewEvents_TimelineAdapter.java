@@ -66,7 +66,7 @@ public class MyRecyclerViewEvents_TimelineAdapter extends RecyclerView.Adapter<M
             SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
 
             mEventNameView.setText(mEvent.getName());
-            mDateTextView.setText(formatter.format(mEvent.getEnd_date()) );
+            //mDateTextView.setText(formatter.format(mEvent.getEnd_date()) );
             mDescriptionView.setText( mEvent.getDescription());
         }
 

@@ -16,7 +16,7 @@ public class EventLab {
         events = new ArrayList<>();
         events.add(new Event("Justin fever Concert","get sick with your friends",
                 new GregorianCalendar(2020, Calendar.FEBRUARY, 11).getTime(), users.get(0)));
-        events.add(new Event("El Intermedio show","get sick with your friends",
+        events.add(new Event("El Intermedio show","a reventar negritos",
                 new GregorianCalendar(2021, Calendar.JANUARY, 14).getTime(), users.get(0)));
         events.add(new Event("IT film","get sick with your friends",
                 new GregorianCalendar(2023, Calendar.JULY, 1).getTime(), users.get(0)));
