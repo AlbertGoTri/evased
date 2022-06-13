@@ -81,18 +81,16 @@ public class MainActivity extends AppCompatActivity {
         MyMessagesBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MyMessages.class);
+
                 //TODO: instead of getting the user 0, get the user that has signed in the app.
                 User actualUser = manager.getUsers().get(0);
-
-                ArrayList<Conversation> final_conversations = manager.getRelatedConversations(actualUser);
-
-                //--------------------------------------------------------------------We transportate the info
-                Intent intent = new Intent(getApplicationContext(), MyMessages.class);
-                for(int i = 0; i < final_conversations.size(); i++){
-                    intent.putExtra("conv" + i, final_conversations.get(i));
-                }
                 intent.putExtra("actualUser", actualUser);
-                intent.putExtra("NumOfConv", final_conversations.size());
+
+                //-------------------------------------------PASS THE MANAGER THAT INCLUDES ALL THE INFO
+                intent.putExtra("manager", manager);
+
+
 
 
 
@@ -107,6 +105,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyTimeline.class);
+
+                //-------------------------------------------PASS THE MANAGER THAT INCLUDES ALL THE INFO
                 intent.putExtra("manager", manager);
 
                 startActivity(intent);

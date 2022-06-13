@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewMessagesAdapter;
+import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
 import edu.url.salle.albert.gt.evased.entities.Conversation;
 import edu.url.salle.albert.gt.evased.entities.Event;
 import edu.url.salle.albert.gt.evased.entities.User;
@@ -30,21 +31,19 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
         setContentView(R.layout.activity_my_messages);
 
         //-----------------------------------------------------------------------GET THE CONVERSATIONS FROM THE MAIN
-        ArrayList<Conversation> conversations = new ArrayList<>();
+
         
         //intent get information
         Intent intent = this.getIntent();
-        int numOfConv = intent.getIntExtra("NumOfConv", 1);
-        for(int i = 0; i < numOfConv; i++) {
-            conversations.add((Conversation) intent.getSerializableExtra("conv" + i));
-        }
+        UserConvEventManager manager = (UserConvEventManager) intent.getSerializableExtra("manager");
+
         User signInUser = (User) intent.getSerializableExtra("actualUser");
 
 
         //-----------------------------------------------------------------------POPULATE THE RECYCLER VIEW
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.message_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mAdapter = new MyRecyclerViewMessagesAdapter(this, conversations, signInUser);
+        mAdapter = new MyRecyclerViewMessagesAdapter(this, manager.getRelatedConversations(signInUser), signInUser);
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
         
