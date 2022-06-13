@@ -15,13 +15,13 @@ public class UserConvEventManager implements Serializable {
     private ArrayList<Conversation> conversations;
     private ArrayList<Event> events;
 
-    public UserConvEventManager(){
+    public UserConvEventManager() {
 
         //TODO: Instead of getting the DATA from the Labs, we should get the DATA from the Shared Preferences and API
 
         //---------------------------------------------------------------------------------INITIALIZE USERS + CONVERSATIONS + EVENTS
         UserLab userlab = new UserLab();
-        EventLab eventlab = new EventLab( userlab.getUsers()); //always initialize users lab before this one
+        EventLab eventlab = new EventLab(userlab.getUsers()); //always initialize users lab before this one
 
         this.conversations = userlab.getConversations();
         this.events = eventlab.getEvents();
@@ -30,14 +30,14 @@ public class UserConvEventManager implements Serializable {
 
     //--------------------------------------------------------------------------------------Special Functions
 
-    public ArrayList<Conversation> getRelatedConversations(User user){
+    public ArrayList<Conversation> getRelatedConversations(User user) {
         //arraylist with the converations with the user participates
         ArrayList<Conversation> final_conversations = new ArrayList<>();
 
         //get only the conversations where user participates
-        for(Conversation conv: this.conversations){
+        for (Conversation conv : this.conversations) {
 
-            if(conv.getReceiver().getName().equals(user.getName()) || conv.getSender().getName().equals(user.getName())){
+            if (conv.getReceiver().getName().equals(user.getName()) || conv.getSender().getName().equals(user.getName())) {
                 final_conversations.add(conv);
 
             }
@@ -59,5 +59,26 @@ public class UserConvEventManager implements Serializable {
 
     public ArrayList<Event> getEvents() {
         return events;
+    }
+
+    public Conversation getOneConveration(User signInUser, User otherUser) {
+        Conversation convv = null;
+        for (Conversation conv : conversations) {
+            if ((conv.getSender().getName().equals(signInUser.getName()) && conv.getReceiver().getName().equals(otherUser.getName()))
+                    || (conv.getReceiver().getName().equals(signInUser.getName()) && conv.getSender().getName().equals(otherUser.getName())))
+            {
+                convv = conv;
+            }
+        }
+        return convv;
+    }
+
+    public User getTheOtherUser(Conversation item, User signInUser) {
+
+        if(item.getSender().getName().equals(signInUser.getName())){
+            return item.getReceiver();
+        }else{
+            return item.getSender();
+        }
     }
 }

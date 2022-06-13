@@ -82,10 +82,7 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
             }else{
                 mLastMessageView.setText(mConv.getLastMessage().getContent());
             }
-
-
         }
-
 
         @Override
         public void onClick(View view) {

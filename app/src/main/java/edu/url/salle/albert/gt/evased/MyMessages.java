@@ -24,14 +24,11 @@ import edu.url.salle.albert.gt.evased.lab.UserLab;
 public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessagesAdapter.ItemClickListener {
 
     private MyRecyclerViewMessagesAdapter mAdapter;
+    private User SignInUser;
+    private UserConvEventManager managerGeneral;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_messages);
 
@@ -41,14 +38,18 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
         //intent get information
         Intent intent = this.getIntent();
         UserConvEventManager manager = (UserConvEventManager) intent.getSerializableExtra("manager");
+        this.managerGeneral = manager;
 
         User signInUser = (User) intent.getSerializableExtra("actualUser");
+        this.SignInUser= signInUser;
+
+
 
 
         //-----------------------------------------------------------------------POPULATE THE RECYCLER VIEW
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.message_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        System.out.println("sign in user: ------------------" + signInUser.getName());
+
         mAdapter = new MyRecyclerViewMessagesAdapter(this, manager.getRelatedConversations(signInUser), signInUser);
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
@@ -58,5 +59,11 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + mAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getApplicationContext(), messages_between_two_users_activity.class);
+        intent.putExtra("actualUser", SignInUser);
+        intent.putExtra("manager", managerGeneral);
+        intent.putExtra("otherUser", managerGeneral.getTheOtherUser(mAdapter.getItem(position), SignInUser));
+
+        startActivity(intent);
     }
 }
