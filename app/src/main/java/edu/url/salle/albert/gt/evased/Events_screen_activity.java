@@ -17,12 +17,14 @@ import java.util.List;
 
 import edu.url.salle.albert.gt.evased.Adapters.EventsTypeAdapter;
 import edu.url.salle.albert.gt.evased.Adapters.LocationsAdapter;
+import edu.url.salle.albert.gt.evased.databinding.ActivityEventsScreenBinding;
+import edu.url.salle.albert.gt.evased.databinding.ActivityMyMessagesBinding;
 import edu.url.salle.albert.gt.evased.entities.EventsTypes;
 import edu.url.salle.albert.gt.evased.entities.Location;
 
-public class Events_screen_activity extends AppCompatActivity {
+public class Events_screen_activity extends DrawerActivity {
 
-
+    ActivityEventsScreenBinding activityEventsScreenBinding;
 
 
     private LocationsAdapter locationsAdapter;
@@ -34,7 +36,10 @@ public class Events_screen_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_events_screen);
+        activityEventsScreenBinding = ActivityEventsScreenBinding.inflate(getLayoutInflater());
+        setContentView(activityEventsScreenBinding.getRoot());
+        allocateActivityTitle("Events");
+        //setContentView(R.layout.activity_events_screen);
 
         lateral_menu();
 

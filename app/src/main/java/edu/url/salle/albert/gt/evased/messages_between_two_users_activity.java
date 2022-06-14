@@ -18,9 +18,13 @@ import java.util.ArrayList;
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewMessagesAdapter;
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewWhatsappAdapter;
 import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
+import edu.url.salle.albert.gt.evased.databinding.ActivityMessagesBetweenTwoUsersBinding;
+import edu.url.salle.albert.gt.evased.databinding.ActivityMyMessagesBinding;
 import edu.url.salle.albert.gt.evased.entities.User;
 
-public class messages_between_two_users_activity extends AppCompatActivity implements MyRecyclerViewWhatsappAdapter.ItemClickListener {
+public class messages_between_two_users_activity extends DrawerActivity implements MyRecyclerViewWhatsappAdapter.ItemClickListener {
+
+    ActivityMessagesBetweenTwoUsersBinding activityMessagesBetweenTwoUsersBinding;
 
     private UserConvEventManager manager;
     private User signInUser;
@@ -38,7 +42,10 @@ public class messages_between_two_users_activity extends AppCompatActivity imple
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_messages_between_two_users);
+        activityMessagesBetweenTwoUsersBinding = ActivityMessagesBetweenTwoUsersBinding.inflate(getLayoutInflater());
+        setContentView(activityMessagesBetweenTwoUsersBinding.getRoot());
+        allocateActivityTitle("My messages");
+        //setContentView(R.layout.activity_messages_between_two_users);
 
         //-----------------------------------------------------------------------GET THE MESSAGES FROM THE MYMESSAGES
         Intent intent = this.getIntent();

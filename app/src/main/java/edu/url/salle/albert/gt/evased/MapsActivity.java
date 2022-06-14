@@ -13,7 +13,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import edu.url.salle.albert.gt.evased.databinding.ActivityMapsBinding;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback{
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;

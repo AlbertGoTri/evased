@@ -14,6 +14,8 @@ import java.util.ConcurrentModificationException;
 
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewMessagesAdapter;
 import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
+import edu.url.salle.albert.gt.evased.databinding.ActivityEventsScreenBinding;
+import edu.url.salle.albert.gt.evased.databinding.ActivityMyMessagesBinding;
 import edu.url.salle.albert.gt.evased.entities.Conversation;
 import edu.url.salle.albert.gt.evased.entities.Event;
 import edu.url.salle.albert.gt.evased.entities.User;
@@ -21,7 +23,9 @@ import edu.url.salle.albert.gt.evased.lab.EventLab;
 import edu.url.salle.albert.gt.evased.lab.UserLab;
 
 
-public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessagesAdapter.ItemClickListener {
+public class MyMessages extends DrawerActivity implements MyRecyclerViewMessagesAdapter.ItemClickListener {
+
+    ActivityMyMessagesBinding activityMyMessagesBinding;
 
     private MyRecyclerViewMessagesAdapter mAdapter;
     private User SignInUser;
@@ -32,7 +36,10 @@ public class MyMessages extends AppCompatActivity implements MyRecyclerViewMessa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_messages);
+        activityMyMessagesBinding = ActivityMyMessagesBinding.inflate(getLayoutInflater());
+        setContentView(activityMyMessagesBinding.getRoot());
+        allocateActivityTitle("My messages");
+        // setContentView(R.layout.activity_my_messages);
 
         //-----------------------------------------------------------------------GET THE CONVERSATIONS FROM THE MAIN
 

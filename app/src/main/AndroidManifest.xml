@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Evased">
         <activity
+            android:name=".TestShit"
+            android:exported="false" />
+        <activity
+            android:name=".DrawerActivity"
+            android:exported="false" />
+        <activity
             android:name=".messages_between_two_users_activity"
             android:exported="false" />
         <activity

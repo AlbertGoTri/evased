@@ -13,6 +13,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
+import edu.url.salle.albert.gt.evased.databinding.ActivityDrawerBinding;
+import edu.url.salle.albert.gt.evased.databinding.ActivityMainBinding;
+import edu.url.salle.albert.gt.evased.databinding.ActivityTimelineBinding;
 import edu.url.salle.albert.gt.evased.entities.Conversation;
 import edu.url.salle.albert.gt.evased.entities.Event;
 import edu.url.salle.albert.gt.evased.entities.User;
@@ -43,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
         preferences = getSharedPreferences("Userinfo", 0);
         username = findViewById(R.id.username);
