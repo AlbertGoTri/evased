@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/drawable/gradient_background.xml" value="0.2375" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_drawer.xml" value="0.1" />
+        <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_past_events_review.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_search_users.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_test_shit.xml" value="0.25" />
