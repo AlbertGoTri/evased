@@ -3,24 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/drawable/custom_btn.xml" value="0.1695" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/MyMessagess/activity_messages_between_two_users.xml" value="0.11398176291793313" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_events_screen.xml" value="0.234375" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_main.xml" value="0.11398176291793313" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_my_messages.xml" value="0.11398176291793313" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_search_users.xml" value="0.11398176291793313" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/single_conversation_viewer.xml" value="0.1" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/single_user.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/drawable/gradient_background.xml" value="0.2375" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_drawer.xml" value="0.1" />
-        <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_events_screen.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_messages_between_two_users.xml" value="0.1" />
-        <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_mevents.xml" value="0.245018115942029" />
-        <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_my_account.xml" value="0.1" />
-        <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_my_messages.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_past_events_review.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_search_users.xml" value="0.25" />
-        <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_signup.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_test_shit.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/activity_timeline.xml" value="0.1" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/content_layout.xml" value="0.1" />
-        <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/event_locations_layout.xml" value="0.245018115942029" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/lateral_menu_header.xml" value="0.2" />
-        <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/message_like_whatsapp.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/my_events_frame.xml" value="0.264" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/my_messages.xml" value="0.25" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/layout/myeventsframe_single.xml" value="0.25" />

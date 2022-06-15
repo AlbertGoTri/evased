@@ -20,7 +20,11 @@ import edu.url.salle.albert.gt.evased.entities.User;
 public class DrawerActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
-    UserConvEventManager manager = new UserConvEventManager();
+    public UserConvEventManager manager = new UserConvEventManager();
+
+    //TODO: instead of getting the user 0, get the user that has signed in the app.
+    public User SignInUser = manager.getUsers().get(0);
+
 
     @Override
     public void setContentView(View view) {

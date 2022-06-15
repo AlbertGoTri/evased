@@ -90,4 +90,13 @@ public class UserConvEventManager implements Serializable {
         conv.addMessage(content, sender);
     }
 
+    public ArrayList<User> getSimilarUsers(CharSequence userToSearch) {
+        ArrayList<User> usersToReturn = new ArrayList<>();
+        for(User user: this.users){
+            if(userToSearch.charAt(0) == user.getName().charAt(0)){
+                usersToReturn.add(user);
+            }
+        }
+        return usersToReturn;
+    }
 }

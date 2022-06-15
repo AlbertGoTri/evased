@@ -42,10 +42,10 @@ MyTimeline extends DrawerActivity implements MyRecyclerViewEvents_TimelineAdapte
 
 
 
-
+        //TODO:(THERE IS NOTHING TO DO) SINCE THIS CLASS EXTENDS FROM DRAWER ACTIVITY (the sidebar) THERE IS NO NEED TO INTENT THINGS
         //populate the recycler view
-        Intent intent = this.getIntent();
-        UserConvEventManager manager = (UserConvEventManager) intent.getSerializableExtra("manager");
+        //Intent intent = this.getIntent();
+        //UserConvEventManager manager = (UserConvEventManager) intent.getSerializableExtra("manager");
 
 
 

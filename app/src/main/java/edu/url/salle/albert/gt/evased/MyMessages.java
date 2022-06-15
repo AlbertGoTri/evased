@@ -28,8 +28,8 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
     ActivityMyMessagesBinding activityMyMessagesBinding;
 
     private MyRecyclerViewMessagesAdapter mAdapter;
-    private User SignInUser;
-    private UserConvEventManager managerGeneral;
+    //private User SignInUser;
+    //private UserConvEventManager managerGeneral;
 
     private RecyclerView recyclerView;
 
@@ -43,14 +43,15 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
 
         //-----------------------------------------------------------------------GET THE CONVERSATIONS FROM THE MAIN
 
-        
-        //intent get information
-        Intent intent = this.getIntent();
-        UserConvEventManager manager = (UserConvEventManager) intent.getSerializableExtra("manager");
-        this.managerGeneral = manager;
+        //TODO:(THERE IS NOTHING TO DO) SINCE THIS CLASS EXTENDS FROM DRAWER ACTIVITY (the sidebar) THERE IS NO NEED TO INTENT THINGS
 
-        User signInUser = (User) intent.getSerializableExtra("actualUser");
-        this.SignInUser= signInUser;
+        //intent get information
+        //Intent intent = this.getIntent();
+        //UserConvEventManager manager = (UserConvEventManager) intent.getSerializableExtra("manager");
+        //this.managerGeneral = manager;
+
+        //User signInUser = (User) intent.getSerializableExtra("actualUser");
+        //this.SignInUser= signInUser;
 
 
 
@@ -68,8 +69,8 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
         Toast.makeText(this, "You clicked " + mAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), messages_between_two_users_activity.class);
         intent.putExtra("actualUser", SignInUser);
-        intent.putExtra("manager", managerGeneral);
-        intent.putExtra("otherUser", managerGeneral.getTheOtherUser(mAdapter.getItem(position), SignInUser));
+        intent.putExtra("manager", manager);
+        intent.putExtra("otherUser", manager.getTheOtherUser(mAdapter.getItem(position), SignInUser));
 
         startActivityForResult(intent, 1);
     }
@@ -78,14 +79,14 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if(resultCode == RESULT_OK) {
-                this.managerGeneral = (UserConvEventManager) data.getSerializableExtra("managerV2");
+                this.manager = (UserConvEventManager) data.getSerializableExtra("managerV2");
                 updateSharedPreferences();
 
             }
         }
     }
     private void updateSharedPreferences(){
-        mAdapter = new MyRecyclerViewMessagesAdapter(this, managerGeneral.getRelatedConversations(SignInUser), SignInUser);
+        mAdapter = new MyRecyclerViewMessagesAdapter(this, manager.getRelatedConversations(SignInUser), SignInUser);
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
     }
