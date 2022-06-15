@@ -11,13 +11,16 @@ import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.SearchView;
 
 import com.google.android.material.navigation.NavigationView;
 
 import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
 import edu.url.salle.albert.gt.evased.entities.User;
 
-public class DrawerActivity extends AppCompatActivity {
+public class DrawerActivity extends AppCompatActivity{
+
+
 
     DrawerLayout drawerLayout;
     public UserConvEventManager manager = new UserConvEventManager();
@@ -88,5 +91,6 @@ protected void allocateActivityTitle(String title) {
             getSupportActionBar().setTitle(title);
         }
 }
+
 
 }

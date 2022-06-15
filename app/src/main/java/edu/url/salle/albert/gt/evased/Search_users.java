@@ -18,8 +18,9 @@ import edu.url.salle.albert.gt.evased.databinding.ActivitySearchUsersBinding;
 import edu.url.salle.albert.gt.evased.databinding.ActivityTimelineBinding;
 import edu.url.salle.albert.gt.evased.entities.User;
 
-public class Search_users extends DrawerActivity implements MyRecyclerViewNewUsersAdapter.ItemClickListener {
+public class Search_users extends DrawerActivity implements MyRecyclerViewNewUsersAdapter.ItemClickListener,SearchView.OnQueryTextListener  {
 
+    //search User option
     SearchView searchView;
     ActivitySearchUsersBinding activitySearchUsersBinding;
 
@@ -41,19 +42,8 @@ public class Search_users extends DrawerActivity implements MyRecyclerViewNewUse
         updateRecyclerView(manager.getUsers());
 
         searchView = findViewById(R.id.searchUser_searchView);
-        searchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                CharSequence userToSearch = searchView.getQuery();
-                updateRecyclerView(manager.getSimilarUsers(userToSearch));
+        searchView.setOnQueryTextListener(this);
 
-            }
-        });
-
-
-
-
-        //setContentView(R.layout.activity_search_users);
     }
 
     private void updateRecyclerView(ArrayList<User> users) {
@@ -66,5 +56,16 @@ public class Search_users extends DrawerActivity implements MyRecyclerViewNewUse
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + mAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
 
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        mAdapter.filtrado(s);
+        return false;
     }
 }

@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 import edu.url.salle.albert.gt.evased.R;
 import edu.url.salle.albert.gt.evased.entities.Conversation;
@@ -18,12 +20,15 @@ import edu.url.salle.albert.gt.evased.entities.User;
 public class MyRecyclerViewNewUsersAdapter extends RecyclerView.Adapter<MyRecyclerViewNewUsersAdapter.UserHolder>{
 
     private ArrayList<User> mUsers;
+    private ArrayList<User> mUsersOriginal;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
 
     public MyRecyclerViewNewUsersAdapter(Context context, ArrayList<User> users) {
         this.mInflater = LayoutInflater.from(context);
+        this.mUsersOriginal = new ArrayList<>();
+        this.mUsersOriginal.addAll(users);
         mUsers = users;
 
     }
@@ -37,7 +42,23 @@ public class MyRecyclerViewNewUsersAdapter extends RecyclerView.Adapter<MyRecycl
     @Override
     public void onBindViewHolder(UserHolder holder, int position) {
         User userr = mUsers.get(position);
+
         holder.bind(userr);
+    }
+
+    public void filtrado(String txtBuscar ){
+        int longitud = txtBuscar.length();
+        if(longitud == 0){
+            mUsers.clear();
+            mUsers.addAll(mUsersOriginal);
+        }
+        else {
+            ArrayList<User> collection = (ArrayList<User>) mUsers.stream().filter(i -> i.getName().toLowerCase().contains(txtBuscar.toLowerCase()))
+                    .collect(Collectors.toList());
+            mUsers.clear();
+            mUsers.addAll(collection);
+        }
+        notifyDataSetChanged();
     }
 
     @Override
