@@ -63,29 +63,32 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity= "top"
-        android:orientation= "vertical">
+        android:layout_height="313dp"
+        android:layout_above="@+id/typing_space"
+        android:gravity="top"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@id/typing_space"
+        app:layout_constraintEnd_toEndOf="@id/typing_space"
+        app:layout_constraintStart_toStartOf="@id/typing_space"
+        app:layout_constraintTop_toBottomOf="@id/typing_space">
 
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/messages_recycler_view_23"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/messages_recycler_view_23"
             android:layout_margin="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="MissingConstraints"
-            tools:listitem="@layout/message_like_whatsapp"
+            tools:layout_editor_absoluteX="1dp"
 
-            tools:layout_editor_absoluteX="1dp"/>
-
-
+            tools:listitem="@layout/message_like_whatsapp" />
 
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/typing_space"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity= "bottom"
         android:orientation= "horizontal">
@@ -94,7 +97,7 @@
             android:id="@+id/newMessageEdittext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_above="@+id/sendmessagebutton"
             android:ems="17"
             android:inputType="textPersonName"
             android:text="Name" />

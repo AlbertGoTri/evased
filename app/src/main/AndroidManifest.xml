@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Evased">
         <activity
+            android:name=".MyAccountActivity"
+            android:exported="false" />
+        <activity
             android:name=".TestShit"
             android:exported="false" />
         <activity
@@ -56,10 +59,10 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

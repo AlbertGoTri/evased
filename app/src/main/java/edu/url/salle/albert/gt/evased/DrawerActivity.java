@@ -14,9 +14,13 @@ import android.widget.FrameLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
+import edu.url.salle.albert.gt.evased.entities.User;
+
 public class DrawerActivity extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
+    UserConvEventManager manager = new UserConvEventManager();
 
     @Override
     public void setContentView(View view) {
@@ -36,11 +40,17 @@ public class DrawerActivity extends AppCompatActivity {
 
                 switch (item.getItemId()) {
                     case R.id.nav_timeline :
-                        startActivity(new Intent(getApplicationContext(), MyTimeline.class));
+                        Intent timeline_intent =new Intent(getApplicationContext(), MyTimeline.class);
+                        timeline_intent.putExtra("manager", manager);
+                        startActivity(timeline_intent);
                         overridePendingTransition(0, 0);
                         break;
                     case R.id.nav_messages :
-                        startActivity(new Intent(getApplicationContext(), MyMessages.class));
+                        Intent messages_intent = new Intent(getApplicationContext(), MyMessages.class);
+                        User actualUser = manager.getUsers().get(0);
+                        messages_intent.putExtra("actualUser", actualUser);
+                        messages_intent.putExtra("manager", manager);
+                        startActivity(messages_intent);
                         overridePendingTransition(0, 0);
                         break;
                     case R.id.nav_events:
@@ -49,6 +59,14 @@ public class DrawerActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_search_users:
                         startActivity(new Intent(getApplicationContext(), Search_users.class));
+                        overridePendingTransition(0, 0);
+                        break;
+                    case R.id.nav_map:
+                        startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+                        overridePendingTransition(0, 0);
+                        break;
+                    case R.id.nav_account:
+                        startActivity(new Intent(getApplicationContext(), MyAccountActivity.class));
                         overridePendingTransition(0, 0);
                         break;
                 }

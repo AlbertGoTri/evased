@@ -41,8 +41,6 @@ public class Events_screen_activity extends DrawerActivity {
         allocateActivityTitle("Events");
         //setContentView(R.layout.activity_events_screen);
 
-        lateral_menu();
-
         List<Location> locations = new ArrayList<>();
         ImageButton imageButton = null;
         locations.add(new Location(imageButton, "ana 3yiit"));
@@ -73,15 +71,7 @@ public class Events_screen_activity extends DrawerActivity {
 
         }
 
-    private void lateral_menu() {
-        drawerLayout = findViewById(R.id.my_drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
 
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

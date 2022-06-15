@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_account_activity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyAccountActivity"
+    android:background="@drawable/gradient_background"
+    tools:ignore="HardcodedText">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="70dp"
+        android:layout_height="73dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="1dp"
+        app:srcCompat="@drawable/aaaaaalogo" />
+
+    <ImageView
+        android:id="@+id/icon_user"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textView"
+        android:src="@drawable/ic_baseline_account_circle_24"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="My Account Details"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/icon_user"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:background="#673AB7"
+        android:gravity="center"
+        android:text="My name"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/name"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:background="#673AB7"
+        android:gravity="center"
+        android:text="My Email"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/bio"
+        android:layout_width="250dp"
+        android:layout_height="110dp"
+        android:layout_below="@+id/email"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:background="#673AB7"
+        android:gravity="center"
+        android:hint="Enter your bio"
+        android:inputType="textAutoComplete"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="178dp" />
+
+    <ImageView
+        android:id="@+id/modify_with_keyboard"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/email"
+        android:layout_marginTop="18dp"
+        android:layout_toEndOf="@+id/bio"
+        android:src="@drawable/ic_baseline_keyboard_24" />
+
+    <EditText
+        android:id="@+id/interests"
+        android:layout_width="250dp"
+        android:layout_height="110dp"
+        android:layout_below="@+id/bio"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="15dp"
+        android:background="#673AB7"
+        android:gravity="center"
+        android:hint="Enter your interests"
+        android:inputType="textAutoComplete"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/modify_interest_with_keyboard"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_below="@+id/bio"
+        android:layout_marginTop="18dp"
+        android:layout_toEndOf="@+id/interests"
+        android:src="@drawable/ic_baseline_keyboard_24" />
+
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/interests"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="25dp"
+        android:text="Update"
+        android:background="@drawable/custom_btn"
+        />
+
+</RelativeLayout>
