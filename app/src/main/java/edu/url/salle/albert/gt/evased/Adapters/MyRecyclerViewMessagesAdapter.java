@@ -12,7 +12,6 @@ import java.util.ArrayList;
 
 import edu.url.salle.albert.gt.evased.R;
 import edu.url.salle.albert.gt.evased.entities.Conversation;
-import edu.url.salle.albert.gt.evased.entities.User;
 
 public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecyclerViewMessagesAdapter.ConversationHolder>{
 

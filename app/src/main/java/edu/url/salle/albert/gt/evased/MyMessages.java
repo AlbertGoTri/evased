@@ -5,22 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewMessagesAdapter;
 import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
-import edu.url.salle.albert.gt.evased.databinding.ActivityEventsScreenBinding;
 import edu.url.salle.albert.gt.evased.databinding.ActivityMyMessagesBinding;
-import edu.url.salle.albert.gt.evased.entities.Conversation;
-import edu.url.salle.albert.gt.evased.entities.Event;
-import edu.url.salle.albert.gt.evased.entities.User;
-import edu.url.salle.albert.gt.evased.lab.EventLab;
-import edu.url.salle.albert.gt.evased.lab.UserLab;
 
 
 public class MyMessages extends DrawerActivity implements MyRecyclerViewMessagesAdapter.ItemClickListener {

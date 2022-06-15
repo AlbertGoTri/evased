@@ -1,10 +1,8 @@
 package edu.url.salle.albert.gt.evased;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.SearchView;
@@ -12,11 +10,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewMessagesAdapter;
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewNewUsersAdapter;
 import edu.url.salle.albert.gt.evased.databinding.ActivitySearchUsersBinding;
-import edu.url.salle.albert.gt.evased.databinding.ActivityTimelineBinding;
-import edu.url.salle.albert.gt.evased.entities.User;
 
 public class Search_users extends DrawerActivity implements MyRecyclerViewNewUsersAdapter.ItemClickListener,SearchView.OnQueryTextListener  {
 

@@ -5,22 +5,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
-import edu.url.salle.albert.gt.evased.databinding.ActivityDrawerBinding;
-import edu.url.salle.albert.gt.evased.databinding.ActivityMainBinding;
-import edu.url.salle.albert.gt.evased.databinding.ActivityTimelineBinding;
-import edu.url.salle.albert.gt.evased.entities.Conversation;
-import edu.url.salle.albert.gt.evased.entities.Event;
 import edu.url.salle.albert.gt.evased.entities.User;
-import edu.url.salle.albert.gt.evased.lab.EventLab;
-import edu.url.salle.albert.gt.evased.lab.UserLab;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private Button signInBtn;
     private TextView username;
     private TextView password;
+    private String usernameValue;
+    private String passwordValue;
 
     //---------------------------------------------------------------------------------EXTRA BUTTONS
     private Button MyMessagesBTN;
@@ -37,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
     //----------------------------------------------------------------------------------CREATE ALL DATA (EVENTS, USERS, CONVERSATIONS)
     UserConvEventManager manager = new UserConvEventManager();
-
-
 
     SharedPreferences preferences;
 
@@ -51,6 +50,24 @@ public class MainActivity extends AppCompatActivity {
         preferences = getSharedPreferences("Userinfo", 0);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+
+        String url = "http://puigmal.salle.url.edu/api/v2";
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                System.out.println("SE VIENE HOSTIA");
+                Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
+                System.out.println("QUE VIENE QUE VIENE QUE VIENE\n\n\n" + response + "\n\n\nVINO VINO VINO");
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("ERROR PRINGAO");
+                Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         noAccountBtn = findViewById(R.id.noAccountBtn);
         noAccountBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,19 +82,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //check the user data
-                String usernameValue = username.getText().toString();
-                String passwordValue = password.getText().toString();
-
-                String registeredUsername = preferences.getString("name", "");
-                String registeredPassword = preferences.getString("password", "");
-
-                if(usernameValue.equals(registeredUsername) && passwordValue.equals(registeredPassword)) {
-                    Toast.makeText(MainActivity.this, "LOGIN SUCCESSFUL" + usernameValue + passwordValue, Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, Events_screen_activity.class));
-                }else{
-                    Toast.makeText(MainActivity.this, "LOGIN FAILED -> " + usernameValue + " != " + registeredUsername + ", " + passwordValue + " != " + registeredPassword, Toast.LENGTH_SHORT).show();
-                }
-
+                usernameValue = username.getText().toString();
+                passwordValue = password.getText().toString();
+                queue.add(stringRequest);
             }
         });
         //--------------------------------------------------------------------MY_MESSAGES_BUTTON----------------------------------------------------------------------------
@@ -88,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), MyMessages.class);
 
                 //TODO: instead of getting the user 0, get the user that has signed in the app.
-                User actualUser = manager.getUsers().get(0);
-                intent.putExtra("actualUser", actualUser);
+                edu.url.salle.albert.gt.evased.entities.User actualUser = manager.getUsers().get(0);
+                intent.putExtra("actualUser", (Parcelable) actualUser);
 
                 //-------------------------------------------PASS THE MANAGER THAT INCLUDES ALL THE INFO
                 intent.putExtra("manager", manager);
@@ -113,5 +120,4 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 }

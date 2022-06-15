@@ -1,6 +1,5 @@
 package edu.url.salle.albert.gt.evased;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,14 +12,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
-import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewMessagesAdapter;
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewWhatsappAdapter;
 import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
 import edu.url.salle.albert.gt.evased.databinding.ActivityMessagesBetweenTwoUsersBinding;
-import edu.url.salle.albert.gt.evased.databinding.ActivityMyMessagesBinding;
-import edu.url.salle.albert.gt.evased.entities.User;
 
 public class messages_between_two_users_activity extends DrawerActivity implements MyRecyclerViewWhatsappAdapter.ItemClickListener {
 

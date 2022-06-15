@@ -1,27 +1,14 @@
 package edu.url.salle.albert.gt.evased;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewEvents_TimelineAdapter;
-import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewMessagesAdapter;
-import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
-import edu.url.salle.albert.gt.evased.databinding.ActivityDrawerBinding;
 import edu.url.salle.albert.gt.evased.databinding.ActivityTimelineBinding;
-import edu.url.salle.albert.gt.evased.entities.Conversation;
-import edu.url.salle.albert.gt.evased.entities.Event;
-import edu.url.salle.albert.gt.evased.entities.User;
-import edu.url.salle.albert.gt.evased.lab.EventLab;
-import edu.url.salle.albert.gt.evased.lab.UserLab;
 
 public class
 

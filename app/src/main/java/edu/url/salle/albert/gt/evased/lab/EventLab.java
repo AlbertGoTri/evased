@@ -2,11 +2,9 @@ package edu.url.salle.albert.gt.evased.lab;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import edu.url.salle.albert.gt.evased.entities.Event;
-import edu.url.salle.albert.gt.evased.entities.User;
 
 public class EventLab {
 
