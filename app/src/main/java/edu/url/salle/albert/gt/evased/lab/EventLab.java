@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import edu.url.salle.albert.gt.evased.entities.Event;
+import edu.url.salle.albert.gt.evased.entities.User;
 
 public class EventLab {
 

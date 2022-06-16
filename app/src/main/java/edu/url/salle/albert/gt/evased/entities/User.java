@@ -1,8 +1,9 @@
 package edu.url.salle.albert.gt.evased.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable {
     private int userID;
     private String name;
     private String lastName;
@@ -60,6 +61,8 @@ public class User {
         this.createdEvents = createdEvents;
         this.assistingEvents = assistingEvents;
     }
+
+
 
     public String getName() {
         return name;

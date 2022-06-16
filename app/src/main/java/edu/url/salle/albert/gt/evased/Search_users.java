@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewNewUsersAdapter;
 import edu.url.salle.albert.gt.evased.databinding.ActivitySearchUsersBinding;
+import edu.url.salle.albert.gt.evased.entities.User;
 
 public class Search_users extends DrawerActivity implements MyRecyclerViewNewUsersAdapter.ItemClickListener,SearchView.OnQueryTextListener  {
 

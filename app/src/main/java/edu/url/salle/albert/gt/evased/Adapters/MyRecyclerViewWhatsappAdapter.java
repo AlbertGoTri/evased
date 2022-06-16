@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import edu.url.salle.albert.gt.evased.R;
 import edu.url.salle.albert.gt.evased.entities.Conversation;
 import edu.url.salle.albert.gt.evased.entities.Message;
+import edu.url.salle.albert.gt.evased.entities.User;
 
 public class MyRecyclerViewWhatsappAdapter extends RecyclerView.Adapter<MyRecyclerViewWhatsappAdapter.MessageHolder>{
 

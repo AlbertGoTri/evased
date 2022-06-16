@@ -20,12 +20,12 @@ public class UserConvEventManager implements Serializable {
         //TODO: Instead of getting the DATA from the Labs, we should get the DATA from the Shared Preferences and API
 
         //---------------------------------------------------------------------------------INITIALIZE USERS + CONVERSATIONS + EVENTS
-        UserLab userlab = new UserLab();
-        EventLab eventlab = new EventLab(userlab.getUsers()); //always initialize users lab before this one
+        //UserLab userlab = new UserLab();
+        //EventLab eventlab = new EventLab(userlab.getUsers()); //always initialize users lab before this one
 
-        this.conversations = userlab.getConversations();
-        this.events = eventlab.getEvents();
-        this.users = userlab.getUsers();
+        //this.conversations = userlab.getConversations();
+        //this.events = eventlab.getEvents();
+        //this.users = userlab.getUsers();
     }
 
     //--------------------------------------------------------------------------------------Special Functions GETTERS

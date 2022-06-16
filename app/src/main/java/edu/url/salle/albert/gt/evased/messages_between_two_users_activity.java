@@ -15,6 +15,7 @@ import android.widget.Toast;
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewWhatsappAdapter;
 import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
 import edu.url.salle.albert.gt.evased.databinding.ActivityMessagesBetweenTwoUsersBinding;
+import edu.url.salle.albert.gt.evased.entities.User;
 
 public class messages_between_two_users_activity extends DrawerActivity implements MyRecyclerViewWhatsappAdapter.ItemClickListener {
 

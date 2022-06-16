@@ -37,7 +37,7 @@ public class Conversation implements Serializable {
     //last message getter
     public Message getLastMessage(){
         if(messages.size() == 0){
-            return new Message("No Messages received yet :(( (incel)", 0, new User("Marcel", "Lopez", "elPikoDeOro@gmail.com", "password"));
+            return new Message("No Messages received yet :(( (incel)", 0, null);
         }
         return this.messages.get(messages.size() - 1);
     }

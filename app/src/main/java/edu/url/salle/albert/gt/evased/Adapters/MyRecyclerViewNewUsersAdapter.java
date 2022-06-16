@@ -14,6 +14,7 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 import edu.url.salle.albert.gt.evased.R;
+import edu.url.salle.albert.gt.evased.entities.User;
 
 public class MyRecyclerViewNewUsersAdapter extends RecyclerView.Adapter<MyRecyclerViewNewUsersAdapter.UserHolder>{
 

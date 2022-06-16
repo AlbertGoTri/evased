@@ -11,13 +11,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import Persistence.MySingleton;
 import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
 import edu.url.salle.albert.gt.evased.entities.User;
 
@@ -51,22 +57,7 @@ public class MainActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
-        String url = "http://puigmal.salle.url.edu/api/v2";
-        RequestQueue queue = Volley.newRequestQueue(this);
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                System.out.println("SE VIENE HOSTIA");
-                Toast.makeText(MainActivity.this, response, Toast.LENGTH_SHORT).show();
-                System.out.println("QUE VIENE QUE VIENE QUE VIENE\n\n\n" + response + "\n\n\nVINO VINO VINO");
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println("ERROR PRINGAO");
-                Toast.makeText(MainActivity.this, error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
         noAccountBtn = findViewById(R.id.noAccountBtn);
         noAccountBtn.setOnClickListener(new View.OnClickListener() {
@@ -84,40 +75,34 @@ public class MainActivity extends AppCompatActivity {
                 //check the user data
                 usernameValue = username.getText().toString();
                 passwordValue = password.getText().toString();
-                queue.add(stringRequest);
+
+                //TODO CAMBIAR
+                String url = "http://puigmal.salle.url.edu/api/v2/login";
+
+                JSONObject jsonBody = new JSONObject();
+                try {
+                    jsonBody.put("email", "mf@gmail.com");
+                    jsonBody.put("password", "12345678");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                        (url, jsonBody, response -> {
+                            try {
+                                String token = response.getString("accessToken");
+                                System.out.println(token);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }, error -> {
+                            System.out.println("error");
+
+                        });
+
+                MySingleton.getInstance(getApplicationContext()).addToRequestQueue(jsonObjectRequest);
+
             }
         });
-        //--------------------------------------------------------------------MY_MESSAGES_BUTTON----------------------------------------------------------------------------
-        MyMessagesBTN = findViewById(R.id.MyMessages_Button);
-        MyMessagesBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyMessages.class);
 
-                //TODO: instead of getting the user 0, get the user that has signed in the app.
-                edu.url.salle.albert.gt.evased.entities.User actualUser = manager.getUsers().get(0);
-                intent.putExtra("actualUser", (Parcelable) actualUser);
-
-                //-------------------------------------------PASS THE MANAGER THAT INCLUDES ALL THE INFO
-                intent.putExtra("manager", manager);
-
-
-                startActivity(intent);
-            }
-        });
-
-        //--------------------------------------------------------------------MY_TIMELINE_BUTTON----------------------------------------------------------------------------
-        MyTimelineBTN = findViewById(R.id.MyTimeline_Button);
-        MyTimelineBTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MyTimeline.class);
-
-                //-------------------------------------------PASS THE MANAGER THAT INCLUDES ALL THE INFO
-                intent.putExtra("manager", manager);
-
-                startActivity(intent);
-            }
-        });
     }
 }

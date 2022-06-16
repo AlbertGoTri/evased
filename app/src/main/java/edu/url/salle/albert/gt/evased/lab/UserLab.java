@@ -8,11 +8,11 @@ import edu.url.salle.albert.gt.evased.entities.User;
 public class UserLab {
     private ArrayList<User> users;
     private ArrayList<Conversation> conversations;
-
+/*
     public UserLab(){
         users = new ArrayList<>();
         conversations = new ArrayList<>();
-        users.add(new User("Marcel", "Lopez", "elPikoDeOro@gmail.com", "password"));
+        users.add(new User(1,"Marcel", "Lopez", "elPikoDeOro@gmail.com", "password"));
         users.add(new User("Robert", "Ball", "elMorenoDeLavapies@hotmail.com", "password"));
         users.add(new User("Albert", "McCollum", "surmanoConPitis23@gmail.com", "password"));
         users.add(new User("Yousef", "Antetokoumpo", "deCallePalosAlPecho5@gmail.com", "password"));
@@ -84,4 +84,6 @@ public class UserLab {
     public ArrayList<User> getUsers() {
         return users;
     }
+
+ */
 }
