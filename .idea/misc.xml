@@ -4,10 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/MyMessagess/activity_messages_between_two_users.xml" value="0.11398176291793313" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_drawer.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_events_screen.xml" value="0.234375" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_main.xml" value="0.11398176291793313" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_maps.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_messages_between_two_users.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_mevents.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_my_account.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_my_messages.xml" value="0.11398176291793313" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_past_events_review.xml" value="0.12158054711246201" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_search_users.xml" value="0.11398176291793313" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_timeline.xml" value="0.12158054711246201" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/my_events_frame.xml" value="0.22644927536231885" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/myeventsframe_single.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/single_conversation_viewer.xml" value="0.1" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/single_user.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/youss/AndroidStudioProjects/prpr2/app/src/main/res/drawable/gradient_background.xml" value="0.2375" />
