@@ -12,6 +12,7 @@ public class EventLab {
     private ArrayList<Event> events;
 
     public EventLab( ArrayList<User> users){
+        /*
         events = new ArrayList<>();
         events.add(new Event("Justin fever Concert","get sick with your friends",
                 new GregorianCalendar(2020, Calendar.FEBRUARY, 11).getTime(), users.get(0)));
@@ -29,6 +30,8 @@ public class EventLab {
                 new GregorianCalendar(2022, Calendar.APRIL, 21).getTime(), users.get(4)));
         events.add(new Event("Harry McGuire, the best Defendant Documentary","get sick with your friends",
                 new GregorianCalendar(2025, Calendar.OCTOBER, 18).getTime(), users.get(5)));
+
+         */
     }
 
     public ArrayList<Event> getEvents() {

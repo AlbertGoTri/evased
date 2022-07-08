@@ -8,6 +8,9 @@ import edu.url.salle.albert.gt.evased.entities.User;
 public class UserLab {
     private ArrayList<User> users;
     private ArrayList<Conversation> conversations;
+
+
+
 /*
     public UserLab(){
         users = new ArrayList<>();
