@@ -31,6 +31,7 @@ public class UserConvEventManager implements Serializable {
     //--------------------------------------------------------------------------------------Special Functions GETTERS
 
     public ArrayList<Conversation> getRelatedConversations(User user) {
+        /*
         //arraylist with the converations with the user participates
         ArrayList<Conversation> final_conversations = new ArrayList<>();
 
@@ -42,10 +43,12 @@ public class UserConvEventManager implements Serializable {
 
             }
         }
-        return final_conversations;
+        */
+        return null;
     }
 
     public Conversation getOneConveration(User signInUser, User otherUser) {
+        /*
         Conversation convv = null;
         for (Conversation conv : conversations) {
             if ((conv.getSender().getName().equals(signInUser.getName()) && conv.getReceiver().getName().equals(otherUser.getName()))
@@ -54,16 +57,21 @@ public class UserConvEventManager implements Serializable {
                 convv = conv;
             }
         }
-        return convv;
+
+        */
+        return null;
     }
 
     public User getTheOtherUser(Conversation item, User signInUser) {
+        /*
 
         if(item.getSender().getName().equals(signInUser.getName())){
             return item.getReceiver();
         }else{
             return item.getSender();
         }
+        */
+        return null;
     }
 
 
@@ -86,17 +94,25 @@ public class UserConvEventManager implements Serializable {
     //--------------------------------------------------------------------------------------Special Functions SETTERS
 
     public void addMessage(String content, User sender, User receiver){
+        /*
         Conversation conv = this.getOneConveration(sender, receiver);
         conv.addMessage(content, sender);
+
+         */
     }
 
     public ArrayList<User> getSimilarUsers(CharSequence userToSearch) {
+        /*
         ArrayList<User> usersToReturn = new ArrayList<>();
         for(User user: this.users){
             if(userToSearch.charAt(0) == user.getName().charAt(0)){
                 usersToReturn.add(user);
             }
         }
-        return usersToReturn;
+
+         */
+        return null;
     }
+
+
 }

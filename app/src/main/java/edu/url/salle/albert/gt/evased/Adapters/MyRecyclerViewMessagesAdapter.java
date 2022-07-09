@@ -25,6 +25,7 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
         this.mInflater = LayoutInflater.from(context);
         mConversations = conversations;
         this.actualUser = actualUser;
+
     }
 
     @Override
@@ -35,7 +36,9 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
 
     @Override
     public void onBindViewHolder(ConversationHolder holder, int position) {
+
         Conversation conv = mConversations.get(position);
+
         holder.bind(conv);
     }
 
@@ -66,22 +69,26 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
         public void bind(Conversation conv_) {
 
             mConv = conv_;
-            if(actualUser == mConv.getSender()){
-                mUserTextView.setText(mConv.getReceiver().getName());
-            }
-            else{
-                mUserTextView.setText(mConv.getSender().getName());
-            }
 
-            mDateTextView.setText(mConv.getLastMessage().getDate());
+            mUserTextView.setText(mConv.getName());
 
-            if(mConv.getLastMessage().getSender().getName().equals(actualUser.getName())){
+
+            mDateTextView.setText(mConv.getLastMessage().getTimeStamp());
+
+
+            if(mConv.getLastMessage().getUser_id_sent() == (actualUser.getUserID())){
                 String setextt = youSending + mConv.getLastMessage().getContent();
+                //TODO CMABIAR NOI
+                //mLastMessageView.setText(setextt);
                 mLastMessageView.setText(setextt);
 
             }else{
+                //TODO CMABIAR NOI
+                //mLastMessageView.setText(mConv.getLastMessage().getContent());
                 mLastMessageView.setText(mConv.getLastMessage().getContent());
             }
+
+
         }
 
         @Override

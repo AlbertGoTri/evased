@@ -9,46 +9,58 @@ import java.util.Date;
 public class Message implements Serializable {
 
     //-------------------------------ATTRIBUTES--------------------------------------------------------
+    private int id;
     private String content;
-    private Date date; //this includes the time and the date
-    private User sender;
+    private int user_id_sent;
+    private int user_id_recived;
+    private String timeStamp;
 
-
-    //--------------------------------CONSTRUCTORS-----------------------------------------------------
-    //constructor if the message is old
-    public Message(String content, int currentMilis, User Sender){
-        this.date =  new Date(currentMilis);
+    public Message(int id, String content, int user_id_sent, int user_id_recived, String timeStamp) {
+        this.id = id;
         this.content = content;
-        this.sender = Sender;
-
+        this.user_id_sent = user_id_sent;
+        this.user_id_recived = user_id_recived;
+        this.timeStamp = timeStamp;
     }
 
-    //constructor if the message is new, this way we get the time from the system
-    public Message(String content, User Sender){
-        this.date = new Date(System.currentTimeMillis());
-        this.content = content;
-        this.sender = Sender;
-
+    public int getId() {
+        return id;
     }
 
-    //------------------------------GETTERS------------------------------------------------------------
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getContent() {
         return content;
     }
 
-    public String getDate(){
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-        return formatter.format(this.date);
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public String getTime(){
-        SimpleDateFormat formatter= new SimpleDateFormat("HH:mm:ss");
-        return formatter.format(this.date);
+    public int getUser_id_sent() {
+        return user_id_sent;
     }
 
-    public User getSender() {
-        return sender;
+    public void setUser_id_sent(int user_id_sent) {
+        this.user_id_sent = user_id_sent;
     }
-    //------------------------------SETTERS------------------------------------------------------------
-    //NO NEED FOR THE MOMENT
+
+    public int getUser_id_recived() {
+        return user_id_recived;
+    }
+
+    public void setUser_id_recived(int user_id_recived) {
+        this.user_id_recived = user_id_recived;
+    }
+
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
 }
+

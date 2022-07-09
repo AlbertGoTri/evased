@@ -12,7 +12,6 @@ import android.content.SharedPreferences;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.SearchView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -24,8 +23,9 @@ public class DrawerActivity extends AppCompatActivity{
 
     DrawerLayout drawerLayout;
     public UserConvEventManager manager = new UserConvEventManager();
+    String url_GETALLMESSAGES = "http://puigmal.salle.url.edu/api/v2/messages/users";
 
-
+    public String userToken;
     public User SignInUser;
 
 
@@ -36,7 +36,7 @@ public class DrawerActivity extends AppCompatActivity{
         container.addView(view);
         super.setContentView(drawerLayout);
 
-        SignInUser = getUser();
+        SignInUser = updateUser();
 
         Toolbar toolbar = drawerLayout.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -58,15 +58,13 @@ public class DrawerActivity extends AppCompatActivity{
                          */
                         break;
                     case R.id.nav_messages :
-                        /*
+
+
                         Intent messages_intent = new Intent(getApplicationContext(), MyMessages.class);
-                        User actualUser = manager.getUsers().get(0);
-                        messages_intent.putExtra("actualUser", actualUser);
-                        messages_intent.putExtra("manager", manager);
                         startActivity(messages_intent);
                         overridePendingTransition(0, 0);
 
-                         */
+
                         break;
                     case R.id.nav_events:
                         /*
@@ -112,7 +110,7 @@ protected void allocateActivityTitle(String title) {
         }
 }
 
-    public User getUser(){
+    public User updateUser(){
 
         SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         int s1 = sh.getInt("id", 999999);
@@ -121,8 +119,12 @@ protected void allocateActivityTitle(String title) {
         String s4 = sh.getString("email", "no encontrado");
         String s5 = sh.getString("password", "no encontrado");
         String s6 = sh.getString("image", "no encontrado");
-        System.out.println("nameeeeeeeeeeee: " + s1 + ", " + s2 + ", " + s3 + ", " + s4 + ", " + s5 + ", " + s6);
+        //cogemos las convs:
 
+        System.out.println("drawerName: " + s1 + ", " + s2 + ", " + s3 + ", " + s4 + ", " + s5 + ", " + s6);
+
+        System.out.println("\n\n\n\n NOSE QUEDAMOS SIN CONVS \n\n\n\n\n");
+        this.userToken = sh.getString("token", "no encontrado");
         return new User(s1,s2,s3,s4,s5,s6);
     }
 

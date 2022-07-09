@@ -90,9 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
-
         String url_LOGIN = "http://puigmal.salle.url.edu/api/v2/users/login";
 
 

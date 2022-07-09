@@ -13,6 +13,7 @@ public class User implements Serializable {
     private float avgScore;
     private int numComments;
     private float percentageCommentersBelow;
+    private ArrayList<Conversation> convs;
     private ArrayList<User> friends;
     private ArrayList<Event> createdEvents;
     private ArrayList<Event> assistingEvents;
@@ -30,6 +31,7 @@ public class User implements Serializable {
         this.friends = new ArrayList<>();
         this.createdEvents = new ArrayList<>();
         this.assistingEvents = new ArrayList<>();
+        this.convs = new ArrayList<>();
     }
 
     public User(int userID, String name, String lastName, String email, String password, String image, float avgScore, int numComments, float percentageCommentersBelow) {
@@ -45,6 +47,7 @@ public class User implements Serializable {
         this.friends = new ArrayList<>();
         this.createdEvents = new ArrayList<>();
         this.assistingEvents = new ArrayList<>();
+        this.convs = new ArrayList<>();
     }
 
     public User(int userID, String name, String lastName, String email, String password, String image, float avgScore, int numComments, float percentageCommentersBelow, ArrayList<User> friends, ArrayList<Event> createdEvents, ArrayList<Event> assistingEvents) {
@@ -60,6 +63,7 @@ public class User implements Serializable {
         this.friends = friends;
         this.createdEvents = createdEvents;
         this.assistingEvents = assistingEvents;
+        this.convs = new ArrayList<>();
     }
 
 
@@ -158,5 +162,26 @@ public class User implements Serializable {
 
     public void setAssistingEvents(ArrayList<Event> assistingEvents) {
         this.assistingEvents = assistingEvents;
+    }
+
+    public ArrayList<Conversation> getConvs() {
+        return convs;
+    }
+
+    public void setConvs(ArrayList<Conversation> convs) {
+        this.convs = convs;
+    }
+
+
+    public void addConv(Conversation conversation) {
+        this.convs.add(conversation);
+    }
+
+    public Conversation getLastConv() {
+        if(this.convs.size() == 0){
+            return null;
+        }else {
+            return this.convs.get(convs.size() - 1);
+        }
     }
 }

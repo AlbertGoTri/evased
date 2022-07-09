@@ -1,5 +1,8 @@
 package edu.url.salle.albert.gt.evased.lab;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 import java.util.ArrayList;
 
 import edu.url.salle.albert.gt.evased.entities.Conversation;
@@ -11,10 +14,13 @@ public class UserLab {
 
 
 
-/*
+
     public UserLab(){
+
         users = new ArrayList<>();
         conversations = new ArrayList<>();
+
+        /*
         users.add(new User(1,"Marcel", "Lopez", "elPikoDeOro@gmail.com", "password"));
         users.add(new User("Robert", "Ball", "elMorenoDeLavapies@hotmail.com", "password"));
         users.add(new User("Albert", "McCollum", "surmanoConPitis23@gmail.com", "password"));
@@ -78,6 +84,9 @@ public class UserLab {
         conversations.get(10).addMessage("Tus muertoh!", users.get(6));
         conversations.get(10).addMessage("CUIDADOOOO, que no te vea yo por ahii", users.get(3));
 
+         */
+
+
     }
 
     public ArrayList<Conversation> getConversations() {
@@ -88,5 +97,5 @@ public class UserLab {
         return users;
     }
 
- */
+
 }

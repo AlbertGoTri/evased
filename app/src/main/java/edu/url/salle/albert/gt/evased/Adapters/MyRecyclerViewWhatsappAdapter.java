@@ -23,14 +23,16 @@ public class MyRecyclerViewWhatsappAdapter extends RecyclerView.Adapter<MyRecycl
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
     private User actualUser;
-    private User otherUser;
+    private int otherUser_id;
+    private String otherUser_name;
 
 
-    public MyRecyclerViewWhatsappAdapter(Context context, Conversation conversation, User actualUser, User other) {
+    public MyRecyclerViewWhatsappAdapter(Context context, Conversation conversation, User actualUser) {
         this.mInflater = LayoutInflater.from(context);
         mMessages = conversation.getMessages();
         this.actualUser = actualUser;
-        this.otherUser = other;
+        this.otherUser_id = conversation.getId();
+        this.otherUser_name = conversation.getName();
     }
 
     @Override
@@ -74,18 +76,18 @@ public class MyRecyclerViewWhatsappAdapter extends RecyclerView.Adapter<MyRecycl
         public void bind(Message mess_) {
 
             mMess = mess_;
-            if(actualUser.getName().equals(mMess.getSender().getName())){
+            if(actualUser.getUserID() == mMess.getUser_id_sent()){
                 mUserTextView.setText("You: ");
             }
             else{
-                mUserTextView.setText(otherUser.getName() + separator);
+                mUserTextView.setText(otherUser_name + separator);
             }
 
-            mDateTextView.setText(mMess.getDate());
+            mDateTextView.setText(mMess.getTimeStamp());
 
             mMessageView.setText(mMess.getContent());
 
-            if(mMess.getSender().getName().equals(actualUser.getName())){
+            if(actualUser.getUserID() == mMess.getUser_id_sent()){
                 mLinearLayout.setBackgroundColor(Color.BLUE);
                 System.out.println("blue message: ---------------------- " +mMess.getContent());
 
