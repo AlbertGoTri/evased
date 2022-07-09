@@ -16,6 +16,8 @@ android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:padding="24dp"
         android:layout_gravity="center"
+        android:textSize="23sp"
+        android:textStyle="bold"
         android:text="@string/lorem_ipsum" />
 
     <ImageView

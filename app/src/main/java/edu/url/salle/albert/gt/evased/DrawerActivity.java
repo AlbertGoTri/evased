@@ -61,7 +61,16 @@ public class DrawerActivity extends AppCompatActivity{
                 switch (item.getItemId()) {
                     case R.id.nav_timeline :
 
+
                         Intent timeline_intent =new Intent(getApplicationContext(), MyTimeline.class);
+
+
+                        timeline_intent.putExtra("indexx", events.size());
+                        for(int i = 0; i< events.size() ; i++){
+                            timeline_intent.putExtra("i", events.get(i));
+                            System.out.println("\nEVENT: " + events.get(i).getName() + "");
+
+                        }
                         startActivity(timeline_intent);
                         overridePendingTransition(0, 0);
 
@@ -77,11 +86,11 @@ public class DrawerActivity extends AppCompatActivity{
 
                         break;
                     case R.id.nav_events:
-                        /*
+
                         startActivity(new Intent(getApplicationContext(), Events_screen_activity.class));
                         overridePendingTransition(0, 0);
 
-                         */
+
                         break;
                     case R.id.nav_search_users:
                         /*

@@ -2,12 +2,13 @@ package edu.url.salle.albert.gt.evased;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.SharedPreferences;
+import android.databinding.tool.util.StringUtils;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -68,7 +69,7 @@ public class Events_screen_activity extends DrawerActivity {
         //setContentView(R.layout.activity_events_screen);
 
 
-        events = getEvents();
+
 
 
         ArrayList<EventsTypes> buttons_types = new ArrayList<>();
@@ -126,7 +127,7 @@ public class Events_screen_activity extends DrawerActivity {
         SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
 
 
-        ArrayList<Event> events = new ArrayList<>();
+        ArrayList<Event> events2 = new ArrayList<>();
 
         String url_ALLEVENTS = "http://puigmal.salle.url.edu/api/v2/events";
 
@@ -214,13 +215,17 @@ public class Events_screen_activity extends DrawerActivity {
         };
 
         request2.add(jsonObjectRequestGETEVENTS);
-        return events;
+        return events2;
     }
 
     public ArrayList<Location> getLocations(){
         ArrayList<Location> ret_loc =new ArrayList<>();
         for(Event event :events){
-            ret_loc.add(new Location(event.getImage(), event.getDescription()));
+            String upToNCharacters = event.getImage().substring(0, Math.min(event.getImage().length(), 3));
+            if(upToNCharacters.equals("htt")) {
+                System.out.println("link: " + event.getImage());
+                ret_loc.add(new Location(event.getImage(), event.getName()));
+            }
         }
         return ret_loc;
 

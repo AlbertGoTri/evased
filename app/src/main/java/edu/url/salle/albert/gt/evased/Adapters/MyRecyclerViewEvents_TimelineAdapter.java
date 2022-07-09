@@ -23,6 +23,7 @@ public class MyRecyclerViewEvents_TimelineAdapter extends RecyclerView.Adapter<M
 
     public MyRecyclerViewEvents_TimelineAdapter(Context context, ArrayList<Event> events) {
         this.mInflater = LayoutInflater.from(context);
+        System.out.println(events.get(0).getName()+"\n\n\n\n\\EEEEEEEEEEEEEEEEEEOOOOOOOOOOOOOOEEEEEEEEEEEEE");
         mEvents = events;
     }
 
