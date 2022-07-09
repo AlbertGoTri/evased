@@ -12,6 +12,20 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewWhatsappAdapter;
 import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
 import edu.url.salle.albert.gt.evased.databinding.ActivityMessagesBetweenTwoUsersBinding;
@@ -26,7 +40,7 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
 
     private int index;
     private RecyclerView recyclerView;
-
+    private RequestQueue request1;
     private TextView nameOnDisplay;
     private MyRecyclerViewWhatsappAdapter mAdapter;
 
@@ -41,6 +55,9 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
         activityMessagesBetweenTwoUsersBinding = ActivityMessagesBetweenTwoUsersBinding.inflate(getLayoutInflater());
         setContentView(activityMessagesBetweenTwoUsersBinding.getRoot());
         allocateActivityTitle("My messages");
+
+        request1 = Volley.newRequestQueue(this);
+
 
         System.out.println(" \n\n\n\n\n\n\n\n\n CUANDOI \n\n\n\n\n ");
         for(Conversation conv : SignInUser.getConvs()){
@@ -72,7 +89,7 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
                 Toast.makeText(messages_between_two_users_activity.this, "MESSAGE SENT", Toast.LENGTH_SHORT).show();
                 messageToSend = findViewById(R.id.newMessageEdittext);
                 //TODO I CHNAGED THis
-                //manager.addMessage(messageToSend.getText().toString(), signInUser, otherUser);
+                sendMessage(messageToSend.getText().toString());
                 updateSharedPreferences();
 
             }
@@ -96,7 +113,7 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
     }
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + mAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "You clicked " + mAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
     }
 
     private void updateSharedPreferences(){
@@ -104,5 +121,40 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
         mAdapter = new MyRecyclerViewWhatsappAdapter(this, SignInUser.getConvs().get(index), SignInUser);
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
+    }
+
+    public void sendMessage(String contentt){
+        String url_SENDMESSAGE = "http://puigmal.salle.url.edu/api/v2/messages";
+        JSONObject jsonBodyMESSAGE = new JSONObject();
+        //1866 nosotros, 1607 bonilla  //1034 , 884 , 1329 , 752, 993
+        try {
+            jsonBodyMESSAGE.put("content", contentt);
+            jsonBodyMESSAGE.put("user_id_send", SignInUser.getUserID());
+            jsonBodyMESSAGE.put("user_id_recived", index);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequestSENDMESSAGE = new JsonObjectRequest(Request.Method.POST, url_SENDMESSAGE, jsonBodyMESSAGE, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("ERROR SENDING MESSAGE");
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> heather = new HashMap<>();
+                heather.put("Authorization","Bearer " + userToken);
+                return heather;
+            }
+        };
+
+        request1.add(jsonObjectRequestSENDMESSAGE);
+
     }
 }

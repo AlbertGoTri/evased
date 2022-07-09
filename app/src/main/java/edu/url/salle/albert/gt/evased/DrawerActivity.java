@@ -15,7 +15,12 @@ import android.widget.FrameLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.ArrayList;
+
 import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
+import edu.url.salle.albert.gt.evased.entities.Conversation;
+import edu.url.salle.albert.gt.evased.entities.Event;
+import edu.url.salle.albert.gt.evased.entities.Message;
 import edu.url.salle.albert.gt.evased.entities.User;
 
 public class DrawerActivity extends AppCompatActivity{
@@ -27,6 +32,9 @@ public class DrawerActivity extends AppCompatActivity{
 
     public String userToken;
     public User SignInUser;
+    ArrayList<Event> events;
+    public int num_conv;
+
 
 
     @Override
@@ -35,6 +43,9 @@ public class DrawerActivity extends AppCompatActivity{
         FrameLayout container=  drawerLayout.findViewById(R.id.activityContainer);
         container.addView(view);
         super.setContentView(drawerLayout);
+
+        SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        num_conv = sh.getInt("x_index", 0);
 
         SignInUser = updateUser();
 
@@ -49,13 +60,12 @@ public class DrawerActivity extends AppCompatActivity{
 
                 switch (item.getItemId()) {
                     case R.id.nav_timeline :
-                        /*
+
                         Intent timeline_intent =new Intent(getApplicationContext(), MyTimeline.class);
-                        timeline_intent.putExtra("manager", manager);
                         startActivity(timeline_intent);
                         overridePendingTransition(0, 0);
 
-                         */
+
                         break;
                     case R.id.nav_messages :
 
@@ -81,11 +91,11 @@ public class DrawerActivity extends AppCompatActivity{
                          */
                         break;
                     case R.id.nav_map:
-                        /*
+
                         startActivity(new Intent(getApplicationContext(), MapsActivity.class));
                         overridePendingTransition(0, 0);
 
-                         */
+
                         break;
                     case R.id.nav_account:
                         /*
@@ -112,6 +122,7 @@ protected void allocateActivityTitle(String title) {
 
     public User updateUser(){
 
+        User ret_user;
         SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
         int s1 = sh.getInt("id", 999999);
         String s2 = sh.getString("name", "no encontrado");
@@ -119,14 +130,60 @@ protected void allocateActivityTitle(String title) {
         String s4 = sh.getString("email", "no encontrado");
         String s5 = sh.getString("password", "no encontrado");
         String s6 = sh.getString("image", "no encontrado");
-        //cogemos las convs:
+
 
         System.out.println("drawerName: " + s1 + ", " + s2 + ", " + s3 + ", " + s4 + ", " + s5 + ", " + s6);
 
         System.out.println("\n\n\n\n NOSE QUEDAMOS SIN CONVS \n\n\n\n\n");
         this.userToken = sh.getString("token", "no encontrado");
-        return new User(s1,s2,s3,s4,s5,s6);
+        ret_user = new User(s1,s2,s3,s4,s5,s6);
+
+        //messages--------------------------------------
+
+        //int x_index = sh.getInt("x_index", 0);
+        System.out.println("TENEMOS: " + num_conv + " CONVERSACIONS  - -- -");
+        for(int x = 0; x < num_conv; x++){
+            ret_user.addConv(
+                    new Conversation(
+                            sh.getInt("conv" + x + "id", 0),
+                            sh.getString("conv" + x + "name",""),
+                            sh.getString("conv" + x + "last_name", ""),
+                            sh.getString("conv" + x + "email", ""),
+                            sh.getString("conv" + x + "image", "")
+
+                    )
+            );
+            int y_index = sh.getInt("y_index" + x, 0);
+            for(int y =0; y< y_index; y++){
+                ret_user.getConvs().get(x).addMess(
+                        new Message(
+                                sh.getInt("conv" + x + "mess" + y + "id", 0),
+                                sh.getString("conv" + x + "mess" + y + "content", ""),
+                                sh.getInt("conv" + x + "mess" + y + "getUser_id_sent", 0),
+                                sh.getInt("conv" + x + "mess" + y + "user_id_recived", 0),
+                                sh.getString("conv" + x + "mess" + y + "timestamp", "")
+
+
+                        )
+                );
+
+            }
+        }
+
+        return ret_user;
+
     }
+
+    public void updateMessages(){
+
+        SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+
+
+
+
+    }
+
+
 
 
 }

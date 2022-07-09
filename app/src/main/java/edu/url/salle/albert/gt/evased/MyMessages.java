@@ -1,6 +1,7 @@
 package edu.url.salle.albert.gt.evased;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +45,7 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
     private RequestQueue request;
     private ImageButton refresh;
 
+
     private RecyclerView recyclerView;
 
     @Override
@@ -52,6 +54,7 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
         activityMyMessagesBinding = ActivityMyMessagesBinding.inflate(getLayoutInflater());
         setContentView(activityMyMessagesBinding.getRoot());
         allocateActivityTitle("My messages");
+
 
         recyclerView = (RecyclerView) findViewById(R.id.message_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -71,6 +74,12 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
             @Override
             public void onResponse(JSONArray response) {
                 System.out.println("\nHay " + response.length() + " conversas");
+                SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+                SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                myEdit.putInt("x_index", response.length());
+                num_conv =response.length();
+                myEdit.apply();
+
                 for (int i = 0 ; i < response.length(); i++) {
                     System.out.println("\nENTRAMOS loop");
                     try {
@@ -141,6 +150,7 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
             public void onClick(View view) {
                 Toast.makeText(MyMessages.this, "REFRESHING MESSAGES...", Toast.LENGTH_SHORT).show();
                 updateSharedPreferences();
+                uploadMessages();
             }
         });
 
@@ -204,9 +214,11 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
                     }
                     index_2++;
                 }
+                System.out.println("\n\nTHIS SEQUENCE HAS " + response.length() + " Messages");
                 for (int i = 0 ; i < response.length(); i++) {
                     try {
                         JSONObject obj = response.getJSONObject(i);
+
                         SignInUser.getConvs().get(index).addMess(new Message(
                                         obj.getInt("id"),
                                         obj.getString("content"),
@@ -215,6 +227,7 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
                                         obj.getString("timeStamp")
                                 )
                         );
+                        System.out.println(obj.getInt("user_id_send") + "sent message: " + obj.getString("content") + ", sended to " + obj.getInt("user_id_recived")  );
                         //System.out.println("message to: " + SignInUser.getConvs().get(index).getLastMessage().getUser_id_recived() + ", content: " + SignInUser.getConvs().get(index).getLastMessage().getContent() );
 
                         System.out.println();
@@ -240,5 +253,30 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
 
 
         request.add(jsonObjectRequestUSERMESSAGES);
+    }
+
+    public void uploadMessages(){
+        SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sharedPreferences.edit();
+
+        System.out.println("\n\n\n\n\nHAY " + SignInUser.getConvs().size() + " Conversas\n\n\n");
+        for(int x = 0; x < num_conv; x++){
+            myEdit.putInt("conv" + x + "id", SignInUser.getConvs().get(x).getId());
+            myEdit.putString("conv" + x + "name", SignInUser.getConvs().get(x).getName());
+            myEdit.putString("conv" + x + "email", SignInUser.getConvs().get(x).getEmail());
+            myEdit.putString("conv" + x + "last_name", SignInUser.getConvs().get(x).getLast_name());
+            myEdit.putString("conv" + x + "image", SignInUser.getConvs().get(x).getImage());
+            myEdit.putInt("y_index" + x, SignInUser.getConvs().get(x).getMessages().size());
+            for(int y =0; y< SignInUser.getConvs().get(x).getMessages().size(); y++){
+                myEdit.putInt("conv" + x + "mess" + y + "id", SignInUser.getConvs().get(x).getMessages().get(y).getId());
+                myEdit.putInt("conv" + x + "mess" + y + "user_id_recived", SignInUser.getConvs().get(x).getMessages().get(y).getUser_id_recived());
+                myEdit.putInt("conv" + x + "mess" + y + "getUser_id_sent", SignInUser.getConvs().get(x).getMessages().get(y).getUser_id_sent());
+                myEdit.putString("conv" + x + "mess" + y + "content", SignInUser.getConvs().get(x).getMessages().get(y).getContent());
+                myEdit.putString("conv" + x + "mess" + y + "timestamp", SignInUser.getConvs().get(x).getMessages().get(y).getTimeStamp());
+
+            }
+        }
+
+        myEdit.apply();
     }
 }

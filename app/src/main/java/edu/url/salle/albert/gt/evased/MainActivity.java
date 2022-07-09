@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                             System.out.println("Token: " + userToken);
                             getUserinfo();
 
-                            ArrayList<Event> events = getEvents();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -198,68 +198,7 @@ public class MainActivity extends AppCompatActivity {
         request.add(jsonObjectRequestGETUSERSSTRING);
     }
 
-    public ArrayList<Event> getEvents(){
-        SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-        int id_used = sh.getInt("id", 1);
 
-        ArrayList<Event> events = new ArrayList<>();
-
-        String url_ALLEVENTS = "http://puigmal.salle.url.edu/api/v2/events";
-
-        JsonArrayRequest jsonObjectRequestGETEVENTS = new JsonArrayRequest(Request.Method.GET, url_ALLEVENTS, null,  new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                System.out.println(response);
-                for (int i = 0 ; i < response.length(); i++) {
-                    try {
-                        JSONObject obj = response.getJSONObject(i);
-                        System.out.println(id + " == " + obj.getInt("owner_id"));
-                        if(obj.getInt("owner_id") == id){
-
-
-                            events.add(new Event(
-                                    obj.getInt("id"),
-                                    obj.getString("name"),
-                                    obj.getInt("owner_id"),
-                                    obj.getString("date"),
-                                    obj.getString("image"),
-                                    obj.getString("location"),
-                                    obj.getString("description"),
-                                    obj.getString("eventStart_date"),
-                                    obj.getString("eventEnd_date"),
-                                    obj.getInt("n_participators"),
-                                    obj.getString("type")
-
-                                    )
-                            );
-                            System.out.println("name: " + events.get(events.size() - 1).getName());
-
-                        }
-
-                        System.out.println();
-                    }catch (JSONException e) {
-                        e.printStackTrace();
-                        System.out.println("no guarda bien el event");
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println("errorororororo con los eventos");
-            }
-        }){
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> heather = new HashMap<>();
-                heather.put("Authorization","Bearer " + userToken);
-                return heather;
-            }
-        };
-
-        request.add(jsonObjectRequestGETEVENTS);
-        return events;
-    }
 
     public void saveShared(){
 

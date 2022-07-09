@@ -1,18 +1,26 @@
 package edu.url.salle.albert.gt.evased.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
 import edu.url.salle.albert.gt.evased.R;
@@ -48,21 +56,28 @@ public class LocationsAdapter extends RecyclerView.Adapter<LocationsAdapter.Loca
 
     public class LocationHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private Location mLocation;
-        private ImageButton imageButton;
+        private ImageView imageView;
         private TextView mDescription;
 
         public LocationHolder(@NonNull View itemView) {
             super(itemView);
-            imageButton = (ImageButton) itemView.findViewById(R.id.location_button);
+            imageView = (ImageView) itemView.findViewById(R.id.location_button);
             mDescription = (TextView) itemView.findViewById(R.id.location_information);
             itemView.setOnClickListener(this);
         }
 
         public void bind(Location location) {
-            mLocation = location;
-            mDescription.setText(mLocation.getLocation_description());
-        }
 
+
+
+
+            mLocation = location;
+
+            mDescription.setText(mLocation.getLocation_description());
+            Picasso.get().load(location.getLocation_image()).into(imageView);
+
+
+        }
         @Override
         public void onClick(View view) {
             if(mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());

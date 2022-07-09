@@ -7,18 +7,38 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import edu.url.salle.albert.gt.evased.Adapters.EventsTypeAdapter;
 import edu.url.salle.albert.gt.evased.Adapters.LocationsAdapter;
+import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewMessagesAdapter;
 import edu.url.salle.albert.gt.evased.databinding.ActivityEventsScreenBinding;
 import edu.url.salle.albert.gt.evased.databinding.ActivityMyMessagesBinding;
+import edu.url.salle.albert.gt.evased.entities.Conversation;
+import edu.url.salle.albert.gt.evased.entities.Event;
 import edu.url.salle.albert.gt.evased.entities.EventsTypes;
 import edu.url.salle.albert.gt.evased.entities.Location;
 
@@ -28,24 +48,27 @@ public class Events_screen_activity extends DrawerActivity {
 
 
     private LocationsAdapter locationsAdapter;
+    RecyclerView recyclerView;
     private EventsTypeAdapter eventsTypeAdapter;
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
-    
+    private RequestQueue request2;
+    private ImageButton refresh_events;
+    private ImageButton refresh_events_2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityEventsScreenBinding = ActivityEventsScreenBinding.inflate(getLayoutInflater());
+
+        request2 = Volley.newRequestQueue(this);
         setContentView(activityEventsScreenBinding.getRoot());
         allocateActivityTitle("Events");
         //setContentView(R.layout.activity_events_screen);
 
-        List<Location> locations = new ArrayList<>();
-        ImageButton imageButton = null;
-        locations.add(new Location(imageButton, "ana 3yiit"));
-        locations.add(new Location(imageButton, "chari3 zbi"));
-        locations.add(new Location(imageButton, "wa l9lawi"));
+
+        events = getEvents();
 
 
         ArrayList<EventsTypes> buttons_types = new ArrayList<>();
@@ -56,11 +79,9 @@ public class Events_screen_activity extends DrawerActivity {
         buttons_types.add(new EventsTypes(button, "music"));
 
         //set up the RecyclerView
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); //< - - - WHY "this" ??
-        locationsAdapter = new LocationsAdapter(this, locations);
-        //locationsAdapter.
-        recyclerView.setAdapter(locationsAdapter);
+
 
 
         //set up the RecyclerView
@@ -68,6 +89,25 @@ public class Events_screen_activity extends DrawerActivity {
         recyclerView2.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         eventsTypeAdapter = new EventsTypeAdapter(this, buttons_types);
         recyclerView2.setAdapter(eventsTypeAdapter);
+
+        refresh_events = findViewById(R.id.refresh_events);
+        refresh_events.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Events_screen_activity.this, "REFRESHING EVENTS...", Toast.LENGTH_SHORT).show();
+                    events = getEvents();
+
+            }
+        });
+        refresh_events_2 = findViewById(R.id.refresh_events_2);
+        refresh_events_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Events_screen_activity.this, "REFRESHING EVENTS...", Toast.LENGTH_SHORT).show();
+                updateShared();
+
+            }
+        });
 
         }
 
@@ -80,5 +120,117 @@ public class Events_screen_activity extends DrawerActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public ArrayList<Event> getEvents(){
+        SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
+
+
+        ArrayList<Event> events = new ArrayList<>();
+
+        String url_ALLEVENTS = "http://puigmal.salle.url.edu/api/v2/events";
+
+        JsonArrayRequest jsonObjectRequestGETEVENTS = new JsonArrayRequest(Request.Method.GET, url_ALLEVENTS, null,  new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                int counter = 0;
+                System.out.println(response);
+                for (int i = 0 ; i < response.length(); i++) {
+                    try {
+                        JSONObject obj = response.getJSONObject(i);
+                        System.out.println(SignInUser.getUserID() + " == " + obj.getInt("owner_id"));
+                        if(obj.getInt("owner_id") == SignInUser.getUserID()){
+
+                            counter++;
+                            events.add(new Event(
+                                            obj.getInt("id"),
+                                            obj.getString("name"),
+                                            obj.getInt("owner_id"),
+                                            obj.getString("date"),
+                                            obj.getString("image"),
+                                            obj.getString("location"),
+                                            obj.getString("description"),
+                                            obj.getString("eventStart_date"),
+                                            obj.getString("eventEnd_date"),
+                                            obj.getInt("n_participators"),
+                                            obj.getString("type")
+
+                                    )
+                            );
+                            System.out.println("name: " + events.get(events.size() - 1).getName());
+
+                        }
+
+                        System.out.println();
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                        System.out.println("no guarda bien el event");
+                    }
+                }
+                if(counter == 0){
+                    System.out.println("\n\n\n\nNO EVENTS HAVE BEEN FOUND FOR OUR USER LEST SHOW OTHER EVENTS\n\n\n\n\n" );
+                    for (int i = 0 ; i < response.length(); i++) {
+                        try {
+                            JSONObject obj = response.getJSONObject(i);
+
+                            counter++;
+                            events.add(new Event(
+                                            obj.getInt("id"),
+                                            obj.getString("name"),
+                                            obj.getInt("owner_id"),
+                                            obj.getString("date"),
+                                            obj.getString("image"),
+                                            obj.getString("location"),
+                                            obj.getString("description"),
+                                            obj.getString("eventStart_date"),
+                                            obj.getString("eventEnd_date"),
+                                            obj.getInt("n_participators"),
+                                            obj.getString("type")
+
+                                    )
+                            );
+                            System.out.println("name: " + events.get(events.size() - 1).getName());
+
+                            System.out.println();
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                            System.out.println("no guarda bien el event");
+                        }
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("errorororororo con los eventos");
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> heather = new HashMap<>();
+                heather.put("Authorization","Bearer " + userToken);
+                return heather;
+            }
+        };
+
+        request2.add(jsonObjectRequestGETEVENTS);
+        return events;
+    }
+
+    public ArrayList<Location> getLocations(){
+        ArrayList<Location> ret_loc =new ArrayList<>();
+        for(Event event :events){
+            ret_loc.add(new Location(event.getImage(), event.getDescription()));
+        }
+        return ret_loc;
+
+    }
+
+    private void updateShared(){
+        locationsAdapter = new LocationsAdapter(this, getLocations());
+        //locationsAdapter.
+        recyclerView.setAdapter(locationsAdapter);
+
+
     }
     }
