@@ -43,9 +43,9 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
     //private User SignInUser;
     //private UserConvEventManager managerGeneral;
     private RequestQueue request;
-    private ImageButton refresh;
 
 
+private ArrayList<Conversation> convs;
     private RecyclerView recyclerView;
 
     @Override
@@ -73,6 +73,7 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
                 new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                convs = new ArrayList<>();
                 System.out.println("\nHay " + response.length() + " conversas");
                 SharedPreferences sharedPreferences = getSharedPreferences("MySharedPref", MODE_PRIVATE);
                 SharedPreferences.Editor myEdit = sharedPreferences.edit();
@@ -85,11 +86,11 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
                     try {
                         System.out.println("\nENTRAMOS EN EL TRYY");
                         JSONObject obj = response.getJSONObject(i);
-                        System.out.println(SignInUser.getUserID() + " == " + obj.getInt("id"));
+                        //System.out.println(SignInUser.getUserID() + " == " + obj.getInt("id"));
                         //if(obj.getInt("id") == SignInUser.getUserID()){
 
 
-                            SignInUser.addConv(new Conversation(
+                            convs.add(new Conversation(
                                             obj.getInt("id"),
                                             obj.getString("name"),
                                             obj.getString("last_name"),
@@ -97,7 +98,7 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
                                             obj.getString("image")
                                     )
                             );
-                            System.out.println("conversation with: " + SignInUser.getLastConv().getName());
+                            System.out.println("conversation with: " + convs.get(convs.size() - 1).getName());
 
                         //}
 
@@ -108,7 +109,10 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
                     }
 
                     //saveAllMessages(SignInUser.getLastConv().getId());
+                    saveAllMessages(convs.get(convs.size() - 1).getId());
                 }
+
+
 
             }
         }, new Response.ErrorListener() {
@@ -133,27 +137,6 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
 
         //-----------------------------------------------------------------------POPULATE THE RECYCLER VIEW
 
-        refresh = findViewById(R.id.refresh_button);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MyMessages.this, "REFRESHING CHATS...", Toast.LENGTH_SHORT).show();
-                for(Conversation conv: SignInUser.getConvs()){
-                    saveAllMessages(conv.getId());
-                }
-            }
-        });
-
-        ImageButton refresh_2 = findViewById(R.id.refresh_button_2);
-        refresh_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MyMessages.this, "REFRESHING MESSAGES...", Toast.LENGTH_SHORT).show();
-                updateSharedPreferences();
-                uploadMessages();
-            }
-        });
-
 
         
     }
@@ -162,8 +145,9 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + mAdapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(getApplicationContext(), messages_between_two_users_activity.class);
-        intent.putExtra("index", position);
+        intent.putExtra("index", convs.get(position).getId());
         intent.putExtra("otherUser", SignInUser);
+        intent.putExtra("otherUser_name", convs.get(position).getName());
 
         startActivityForResult(intent, 1);
     }
@@ -173,19 +157,19 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
         if (requestCode == 1) {
             if(resultCode == RESULT_OK) {
                 this.manager = (UserConvEventManager) data.getSerializableExtra("managerV2");
-                updateSharedPreferences();
+               // updateSharedPreferences();
 
             }
         }
     }
 
 
-    private void updateSharedPreferences(){
+    private void updateSharedPreferences(ArrayList<Conversation> convs){
         System.out.println("AHORA LO HAGO - -- - ");
-        for(Conversation conv : SignInUser.getConvs()){
+        for(Conversation conv : convs){
             System.out.println("CONV-> Name of the receiver: " + conv.getName() +" " + conv.getLast_name() + ", ID: " + conv.getId() + ", mail: " + conv.getEmail());
         }
-        mAdapter = new MyRecyclerViewMessagesAdapter(this, SignInUser.getConvs(), SignInUser);
+        mAdapter = new MyRecyclerViewMessagesAdapter(this, convs, SignInUser);
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
     }
@@ -208,7 +192,7 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
             public void onResponse(JSONArray response) {
                 int index = 0;
                 int index_2 = 0;
-                for(Conversation single_conv : SignInUser.getConvs()){
+                for(Conversation single_conv : convs){
                     if(single_conv.getId() == ide){
                         index = index_2;
                     }
@@ -219,7 +203,7 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
                     try {
                         JSONObject obj = response.getJSONObject(i);
 
-                        SignInUser.getConvs().get(index).addMess(new Message(
+                        convs.get(index).addMess(new Message(
                                         obj.getInt("id"),
                                         obj.getString("content"),
                                         obj.getInt("user_id_send"),
@@ -227,7 +211,7 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
                                         obj.getString("timeStamp")
                                 )
                         );
-                        System.out.println(obj.getInt("user_id_send") + "sent message: " + obj.getString("content") + ", sended to " + obj.getInt("user_id_recived")  );
+                        //System.out.println(obj.getInt("user_id_send") + "sent message: " + obj.getString("content") + ", sended to " + obj.getInt("user_id_recived")  );
                         //System.out.println("message to: " + SignInUser.getConvs().get(index).getLastMessage().getUser_id_recived() + ", content: " + SignInUser.getConvs().get(index).getLastMessage().getContent() );
 
                         System.out.println();
@@ -236,6 +220,7 @@ public class MyMessages extends DrawerActivity implements MyRecyclerViewMessages
                         System.out.println("no gurada bien los mensajes");
                     }
                 }
+                updateSharedPreferences(convs);
             }
         }, new Response.ErrorListener() {
             @Override

@@ -73,9 +73,11 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
             mUserTextView.setText(mConv.getName());
 
 
-            mDateTextView.setText(mConv.getLastMessage().getTimeStamp());
+            //mDateTextView.setText(mConv.getLastMessage().getTimeStamp());
 
 
+
+            /*
             if(mConv.getLastMessage().getUser_id_sent() == (actualUser.getUserID())){
                 String setextt = youSending + mConv.getLastMessage().getContent();
                 //TODO CMABIAR NOI
@@ -87,6 +89,10 @@ public class MyRecyclerViewMessagesAdapter extends RecyclerView.Adapter<MyRecycl
                 //mLastMessageView.setText(mConv.getLastMessage().getContent());
                 mLastMessageView.setText(mConv.getLastMessage().getContent());
             }
+
+
+             */
+
 
 
         }

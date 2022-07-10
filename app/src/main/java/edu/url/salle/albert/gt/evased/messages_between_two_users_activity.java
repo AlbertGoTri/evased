@@ -17,12 +17,15 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +33,7 @@ import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewWhatsappAdapter;
 import edu.url.salle.albert.gt.evased.Managers.UserConvEventManager;
 import edu.url.salle.albert.gt.evased.databinding.ActivityMessagesBetweenTwoUsersBinding;
 import edu.url.salle.albert.gt.evased.entities.Conversation;
+import edu.url.salle.albert.gt.evased.entities.Message;
 import edu.url.salle.albert.gt.evased.entities.User;
 
 public class messages_between_two_users_activity extends DrawerActivity implements MyRecyclerViewWhatsappAdapter.ItemClickListener {
@@ -43,6 +47,9 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
     private RequestQueue request1;
     private TextView nameOnDisplay;
     private MyRecyclerViewWhatsappAdapter mAdapter;
+    private ArrayList<Message> messs;
+    private User user;
+    private String other_user_name;
 
     //--------------------------------------------------------------------------SEND MESSAGES VARIABLES
     private EditText messageToSend;
@@ -56,29 +63,31 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
         setContentView(activityMessagesBetweenTwoUsersBinding.getRoot());
         allocateActivityTitle("My messages");
 
+        messs = new ArrayList<>();
+
         request1 = Volley.newRequestQueue(this);
 
 
         System.out.println(" \n\n\n\n\n\n\n\n\n CUANDOI \n\n\n\n\n ");
-        for(Conversation conv : SignInUser.getConvs()){
-            System.out.println("MESSSS-> Name of the receiver: " + conv.getName() +" " + conv.getLast_name() + ", ID: " + conv.getId() + ", mail: " + conv.getEmail());
-        }
+
         //setContentView(R.layout.activity_messages_between_two_users);
 
         //-----------------------------------------------------------------------GET THE MESSAGES FROM THE MYMESSAGES
         Intent intent = this.getIntent();
 
-        this.index = (int) intent.getIntExtra("index", 0);
-
+        this.index = intent.getIntExtra("index", 0);
+        this.user = (User) intent.getSerializableExtra("otherUser");
+        this.other_user_name = intent.getStringExtra("otherUser_name");
+        System.out.println("\n\n\n\nUSER FROM INTENT: " + user.getUserID() + ", " + user.getName()+ "\n\n\n\n");
 
         //-----------------------------------------------------------------------NAME ON DISPLAY
         this.nameOnDisplay = findViewById(R.id.name_messages_receiver);
-        nameOnDisplay.setText(SignInUser.getConvs().get(index).getName());
+        nameOnDisplay.setText(user.getName());
 
         //-----------------------------------------------------------------------POPULATE THE RECYCLER VIEW
         this.recyclerView = (RecyclerView) findViewById(R.id.messages_recycler_view_23);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        updateSharedPreferences();
+        saveAllMessages(index);
 
 
         //-----------------------------------------------------------------------SEND A MESSAGE
@@ -118,7 +127,7 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
 
     private void updateSharedPreferences(){
         //TODO I CHNAGED THis
-        mAdapter = new MyRecyclerViewWhatsappAdapter(this, SignInUser.getConvs().get(index), SignInUser);
+        mAdapter = new MyRecyclerViewWhatsappAdapter(this, messs, SignInUser, index, other_user_name);
         mAdapter.setClickListener(this);
         recyclerView.setAdapter(mAdapter);
     }
@@ -139,6 +148,7 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println(response);
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -156,5 +166,64 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
 
         request1.add(jsonObjectRequestSENDMESSAGE);
 
+    }
+    private void saveAllMessages(int ide){
+        String url_GETMESSAGES = "http://puigmal.salle.url.edu/api/v2/messages" + "/" + ide;
+
+
+        JSONObject jsonBodySEARCH = new JSONObject();
+        try {
+            jsonBodySEARCH.put("id", ide);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JSONArray jsonArrayUSERID = new JSONArray();
+        jsonArrayUSERID.put(jsonBodySEARCH);
+
+        JsonArrayRequest jsonObjectRequestUSERMESSAGES = new JsonArrayRequest(Request.Method.GET, url_GETMESSAGES, jsonArrayUSERID,  new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+
+                System.out.println("\n\nTHIS SEQUENCE HAS " + response.length() + " Messages");
+                for (int i = 0 ; i < response.length(); i++) {
+                    try {
+                        JSONObject obj = response.getJSONObject(i);
+
+                        messs.add(new Message(
+                                        obj.getInt("id"),
+                                        obj.getString("content"),
+                                        obj.getInt("user_id_send"),
+                                        obj.getInt("user_id_recived"),
+                                        obj.getString("timeStamp")
+                                )
+                        );
+                        //System.out.println(obj.getInt("user_id_send") + "sent message: " + obj.getString("content") + ", sended to " + obj.getInt("user_id_recived")  );
+                        //System.out.println("message to: " + SignInUser.getConvs().get(index).getLastMessage().getUser_id_recived() + ", content: " + SignInUser.getConvs().get(index).getLastMessage().getContent() );
+
+                        System.out.println();
+                    }catch (JSONException e) {
+                        e.printStackTrace();
+                        System.out.println("no gurada bien los mensajes");
+                    }
+                }
+                updateSharedPreferences();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("error with getting messages from conversations");
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> heather = new HashMap<>();
+                heather.put("Authorization","Bearer " + userToken);
+                return heather;
+            }
+        };
+
+
+        request1.add(jsonObjectRequestUSERMESSAGES);
     }
 }

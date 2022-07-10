@@ -66,16 +66,7 @@
         android:orientation="vertical">
 
 
-      <ImageButton
-          android:id="@+id/refresh_events"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:srcCompat="@drawable/ic_baseline_refresh_24" />
-      <ImageButton
-          android:id="@+id/refresh_events_2"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          app:srcCompat="@drawable/ic_baseline_refresh_24" />
+
 
       <androidx.recyclerview.widget.RecyclerView
           android:id="@+id/task_recycler_view"

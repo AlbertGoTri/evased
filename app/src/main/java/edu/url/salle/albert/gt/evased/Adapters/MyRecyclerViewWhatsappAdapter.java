@@ -27,12 +27,12 @@ public class MyRecyclerViewWhatsappAdapter extends RecyclerView.Adapter<MyRecycl
     private String otherUser_name;
 
 
-    public MyRecyclerViewWhatsappAdapter(Context context, Conversation conversation, User actualUser) {
+    public MyRecyclerViewWhatsappAdapter(Context context, ArrayList<Message> conversation, User actualUser, int otherUserID, String otherUserName) {
         this.mInflater = LayoutInflater.from(context);
-        mMessages = conversation.getMessages();
+        mMessages = conversation;
         this.actualUser = actualUser;
-        this.otherUser_id = conversation.getId();
-        this.otherUser_name = conversation.getName();
+        this.otherUser_id = otherUserID;
+        this.otherUser_name = otherUserName;
     }
 
     @Override

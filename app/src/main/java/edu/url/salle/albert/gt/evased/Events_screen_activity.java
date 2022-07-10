@@ -54,8 +54,7 @@ public class Events_screen_activity extends DrawerActivity {
     private DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private RequestQueue request2;
-    private ImageButton refresh_events;
-    private ImageButton refresh_events_2;
+
 
 
     @Override
@@ -83,6 +82,7 @@ public class Events_screen_activity extends DrawerActivity {
         recyclerView = (RecyclerView) findViewById(R.id.task_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); //< - - - WHY "this" ??
 
+        events = getEvents();
 
 
         //set up the RecyclerView
@@ -91,24 +91,7 @@ public class Events_screen_activity extends DrawerActivity {
         eventsTypeAdapter = new EventsTypeAdapter(this, buttons_types);
         recyclerView2.setAdapter(eventsTypeAdapter);
 
-        refresh_events = findViewById(R.id.refresh_events);
-        refresh_events.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Events_screen_activity.this, "REFRESHING EVENTS...", Toast.LENGTH_SHORT).show();
-                    events = getEvents();
 
-            }
-        });
-        refresh_events_2 = findViewById(R.id.refresh_events_2);
-        refresh_events_2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Events_screen_activity.this, "REFRESHING EVENTS...", Toast.LENGTH_SHORT).show();
-                updateShared();
-
-            }
-        });
 
         }
 
@@ -124,8 +107,6 @@ public class Events_screen_activity extends DrawerActivity {
     }
 
     public ArrayList<Event> getEvents(){
-        SharedPreferences sh = getSharedPreferences("MySharedPref", MODE_PRIVATE);
-
 
         ArrayList<Event> events2 = new ArrayList<>();
 
@@ -199,6 +180,9 @@ public class Events_screen_activity extends DrawerActivity {
                         }
                     }
                 }
+                locationsAdapter = new LocationsAdapter(Events_screen_activity.this, getLocations());
+                //locationsAdapter.
+                recyclerView.setAdapter(locationsAdapter);
             }
         }, new Response.ErrorListener() {
             @Override
@@ -232,9 +216,7 @@ public class Events_screen_activity extends DrawerActivity {
     }
 
     private void updateShared(){
-        locationsAdapter = new LocationsAdapter(this, getLocations());
-        //locationsAdapter.
-        recyclerView.setAdapter(locationsAdapter);
+
 
 
     }
