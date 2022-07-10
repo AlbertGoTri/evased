@@ -128,8 +128,7 @@
         android:layout_below="@+id/interests"
         android:layout_centerInParent="true"
         android:layout_marginTop="25dp"
-        android:text="Update"
         android:background="@drawable/custom_btn"
-        />
+        android:text="Update" />
 
 </RelativeLayout>

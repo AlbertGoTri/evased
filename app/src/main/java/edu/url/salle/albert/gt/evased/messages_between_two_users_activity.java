@@ -82,7 +82,7 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
 
         //-----------------------------------------------------------------------NAME ON DISPLAY
         this.nameOnDisplay = findViewById(R.id.name_messages_receiver);
-        nameOnDisplay.setText(user.getName());
+        nameOnDisplay.setText(other_user_name);
 
         //-----------------------------------------------------------------------POPULATE THE RECYCLER VIEW
         this.recyclerView = (RecyclerView) findViewById(R.id.messages_recycler_view_23);

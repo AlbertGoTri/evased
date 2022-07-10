@@ -33,6 +33,21 @@ public class User implements Serializable {
         this.assistingEvents = new ArrayList<>();
         this.convs = new ArrayList<>();
     }
+    public User(int userID, String name, String lastName, String email, String image) {
+        this.userID = userID;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = "password";
+        this.image = image;
+        this.avgScore = 0;
+        this.numComments = 0;
+        this.percentageCommentersBelow = 0;
+        this.friends = new ArrayList<>();
+        this.createdEvents = new ArrayList<>();
+        this.assistingEvents = new ArrayList<>();
+        this.convs = new ArrayList<>();
+    }
 
     public User(int userID, String name, String lastName, String email, String password, String image, float avgScore, int numComments, float percentageCommentersBelow) {
         this.userID = userID;

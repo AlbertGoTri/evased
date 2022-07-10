@@ -13,12 +13,6 @@
         android:background="@drawable/layout_bg"
         android:gravity= "left">
 
-        <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="60dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/ic_baseline_account_box_24" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -44,11 +38,14 @@
 
 
 
-                <Button
+                <TextView
                     android:id="@+id/request_friendship_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Send message"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="FRIENDSHIP REQUEST"
+                    android:textStyle="bold"
+                    android:padding="5dp"
+                    android:textSize="17sp"
                     android:background="@drawable/layout_bg_purple"/>
 
 

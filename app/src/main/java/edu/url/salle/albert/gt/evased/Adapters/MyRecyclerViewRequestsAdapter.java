@@ -20,7 +20,7 @@ import edu.url.salle.albert.gt.evased.R;
 import edu.url.salle.albert.gt.evased.Search_users;
 import edu.url.salle.albert.gt.evased.entities.User;
 
-public class MyRecyclerViewNewUsersAdapter extends RecyclerView.Adapter<MyRecyclerViewNewUsersAdapter.UserHolder>{
+public class MyRecyclerViewRequestsAdapter extends RecyclerView.Adapter<MyRecyclerViewRequestsAdapter.UserHolder>{
 
     private ArrayList<User> mUsers;
     private ArrayList<User> mUsersOriginal;
@@ -28,7 +28,7 @@ public class MyRecyclerViewNewUsersAdapter extends RecyclerView.Adapter<MyRecycl
     private ItemClickListener mClickListener;
 
 
-    public MyRecyclerViewNewUsersAdapter(Context context, ArrayList<User> users) {
+    public MyRecyclerViewRequestsAdapter(Context context, ArrayList<User> users) {
         this.mInflater = LayoutInflater.from(context);
         this.mUsersOriginal = new ArrayList<>();
         this.mUsersOriginal.addAll(users);
@@ -38,7 +38,7 @@ public class MyRecyclerViewNewUsersAdapter extends RecyclerView.Adapter<MyRecycl
 
     @Override
     public UserHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.single_user, parent, false);
+        View view = mInflater.inflate(R.layout.friendrequest, parent, false);
         return new UserHolder(view);
     }
 
@@ -79,11 +79,9 @@ public class MyRecyclerViewNewUsersAdapter extends RecyclerView.Adapter<MyRecycl
 
         public UserHolder(View itemView) {
             super(itemView);
-            mUserTextView = (TextView) itemView.findViewById(R.id.Name_User_Search_34);
+            mUserTextView = (TextView) itemView.findViewById(R.id.UserToAccept);
             //mSendMessageButton = (Button) itemView.findViewById(R.id.request_friendship_button);
             itemView.setOnClickListener(this);
-
-
 
         }
 

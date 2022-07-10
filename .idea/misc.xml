@@ -6,6 +6,7 @@
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/MyMessagess/activity_messages_between_two_users.xml" value="0.11398176291793313" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_drawer.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_events_screen.xml" value="0.234375" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_friend_request.xml" value="0.2" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_main.xml" value="0.11398176291793313" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_maps.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_messages_between_two_users.xml" value="0.12158054711246201" />
@@ -16,9 +17,10 @@
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_search_users.xml" value="0.11398176291793313" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_signup.xml" value="0.1" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_test_shit.xml" value="0.16259057971014493" />
-        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_timeline.xml" value="0.176" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/activity_timeline.xml" value="0.15789473684210525" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/content_layout.xml" value="0.16259057971014493" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/event_locations_layout.xml" value="0.15172101449275363" />
+        <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/friendrequest.xml" value="0.11398176291793313" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/horizontal_events_buttons_layout.xml" value="0.11398176291793313" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/lateral_menu_header.xml" value="0.16259057971014493" />
         <entry key="..\:/Users/marce/AndroidStudioProjects/evasedD/app/src/main/res/layout/message_like_whatsapp.xml" value="0.1" />

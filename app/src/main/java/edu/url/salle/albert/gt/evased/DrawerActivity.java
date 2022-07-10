@@ -93,11 +93,11 @@ public class DrawerActivity extends AppCompatActivity{
 
                         break;
                     case R.id.nav_search_users:
-                        /*
+
                         startActivity(new Intent(getApplicationContext(), Search_users.class));
                         overridePendingTransition(0, 0);
 
-                         */
+
                         break;
                     case R.id.nav_map:
 
@@ -107,11 +107,11 @@ public class DrawerActivity extends AppCompatActivity{
 
                         break;
                     case R.id.nav_account:
-                        /*
+
                         startActivity(new Intent(getApplicationContext(), MyAccountActivity.class));
                         overridePendingTransition(0, 0);
 
-                         */
+
                         break;
                 }
                 return false;
