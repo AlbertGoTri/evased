@@ -73,6 +73,7 @@ public class Search_users extends DrawerActivity implements MyRecyclerViewNewUse
                 Intent intent = new Intent(Search_users.this, FriendRequest.class);
                 intent.putExtra("mode", 2);
                 intent.putExtra("token", userToken);
+                intent.putExtra("actual", SignInUser.getUserID());
 
                 startActivity(intent);
             }
@@ -93,6 +94,7 @@ public class Search_users extends DrawerActivity implements MyRecyclerViewNewUse
         intent.putExtra("mode", 1);
         intent.putExtra("token", userToken);
         intent.putExtra("id", all_users.get(position).getUserID());
+        intent.putExtra("actual", SignInUser.getUserID());
         System.out.println("\n\n\n\n\n\n----------------------------------------" +
                 "   " + "id: " + all_users.get(position).getUserID() + "--------------------------------------" +
                 "\n\n\n\n\n\n\n\n\n");

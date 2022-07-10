@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewNewUsersAdapter;
 import edu.url.salle.albert.gt.evased.Adapters.MyRecyclerViewRequestsAdapter;
 import edu.url.salle.albert.gt.evased.entities.User;
 
@@ -35,6 +34,7 @@ public class FriendRequest extends AppCompatActivity implements MyRecyclerViewRe
     private int ider;
     RequestQueue request9;
     private String userToken;
+    private int id_actual;
 
     //recyclerview
     private MyRecyclerViewRequestsAdapter mAdapter;
@@ -53,7 +53,8 @@ public class FriendRequest extends AppCompatActivity implements MyRecyclerViewRe
 
         Intent intent = this.getIntent();
         userToken = intent.getStringExtra("token");
-        ider = intent.getIntExtra("id",456);
+        ider = intent.getIntExtra("id",0);
+        id_actual = intent.getIntExtra("actual", 0);
 
         modee = intent.getIntExtra("mode", 0);
         if(modee == 0){
@@ -70,7 +71,7 @@ public class FriendRequest extends AppCompatActivity implements MyRecyclerViewRe
         //recyclerview
         recyclerView = (RecyclerView) findViewById(R.id.recyclerOfRequesters34);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        getAllUsers();
+        getAllFriendRequests();
     }
 
     private void updateRecyclerView(ArrayList<User> users3) {
@@ -80,18 +81,148 @@ public class FriendRequest extends AppCompatActivity implements MyRecyclerViewRe
     }
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "FRIEND REQUEST SENT!", Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(FriendRequest.this, FriendRequest.class);
-        intent.putExtra("mode", 1);
-        intent.putExtra("token", userToken);
-        intent.getIntExtra("id", all_users.get(position).getUserID());
-        startActivity(intent);
+        if(all_users.get(position).getUserID() == 0){
+            friendship(all_users.get(position).getNumComments());
+            Toast.makeText(this, "ACCEPTED", Toast.LENGTH_SHORT).show();
+
+
+        }else{
+            sendMessage(Integer.toString(id_actual), Integer.toString(ider));
+            Toast.makeText(this, "MESSAGE SENT!", Toast.LENGTH_SHORT).show();
+
+
+        }
+
+        finish();
 
     }
-    private void getAllUsers(){
-        String url_SIGNIN = "http://puigmal.salle.url.edu/api/v2/users";
 
-        JsonArrayRequest jsonObjectRequestGETUSERS = new JsonArrayRequest(Request.Method.GET, url_SIGNIN, null,  new Response.Listener<JSONArray>() {
+    private void friendship(int id){
+        String url_ADDFRIEND = "http://puigmal.salle.url.edu/api/v2/friends/" + id;
+
+        JSONObject jsonBodySEARCH = new JSONObject();
+        try {
+            jsonBodySEARCH.put("id", id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequestACCEPTFRIEND = new JsonObjectRequest(Request.Method.PUT, url_ADDFRIEND, jsonBodySEARCH,  new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> heather = new HashMap<>();
+                heather.put("Authorization","Bearer " + userToken);
+                return heather;
+            }
+
+        };
+        request9.add(jsonObjectRequestACCEPTFRIEND);
+
+    }
+
+    private void getAllFriendRequests(){
+        String url_GETFRIENDSREQUESTS = "http://puigmal.salle.url.edu/api/v2/friends/requests";
+        JsonArrayRequest jsonObjectRequestALLREQUESTS = new JsonArrayRequest(Request.Method.GET, url_GETFRIENDSREQUESTS, null,  new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                for (int i = 0 ; i < response.length(); i++) {
+                    System.out.println("\nENTRAMOS loop");
+                    try {
+                        System.out.println("\nENTRAMOS EN EL TRYY");
+                        JSONObject obj = response.getJSONObject(i);
+                        //System.out.println(SignInUser.getUserID() + " == " + obj.getInt("id"));
+                        //if(obj.getInt("id") == SignInUser.getUserID()){
+
+
+                        all_users.add(new User(
+                                        obj.getInt("status"),
+                                        obj.getString("name"),
+                                        obj.getString("last_name"),
+                                        obj.getString("email"),
+                                        obj.getString("image"),
+                                        obj.getInt("id")
+
+                                )
+                        );
+                        System.out.println("USER-> " + all_users.get(all_users.size() - 1).getName());
+
+                        //}
+
+                        System.out.println();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        System.out.println("no gurada bien los users-> allusers");
+                    }
+                }
+
+                updateRecyclerView(all_users);
+                getFriends();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("eroor");
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> heather = new HashMap<>();
+                heather.put("Authorization","Bearer " + userToken);
+                return heather;
+            }
+        };
+
+
+        request9.add(jsonObjectRequestALLREQUESTS);
+
+
+    }
+
+    private void sendRequest(){
+        String url_ADDFRIEND = "http://puigmal.salle.url.edu/api/v2/friends/" + ider;
+
+        JSONObject jsonBodySEARCH = new JSONObject();
+        try {
+            jsonBodySEARCH.put("id", ider);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonObjectRequestSENDFRIENDREQ = new JsonObjectRequest(Request.Method.POST, url_ADDFRIEND, jsonBodySEARCH,  new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                System.out.println(response);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println("ERROR SENDING ");
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> heather = new HashMap<>();
+                heather.put("Authorization","Bearer " + userToken);
+                return heather;
+            }
+        };
+        request9.add(jsonObjectRequestSENDFRIENDREQ);
+
+    }
+    
+    public void getFriends(){
+        String url_GETFRIENDS = "http://puigmal.salle.url.edu/api/v2/friends";
+
+        JsonArrayRequest jsonObjectRequestALLFRIENDS = new JsonArrayRequest(Request.Method.GET, url_GETFRIENDS, null,  new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 for (int i = 0 ; i < response.length(); i++) {
@@ -127,7 +258,7 @@ public class FriendRequest extends AppCompatActivity implements MyRecyclerViewRe
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("not getting the users correctly");
+
             }
         }){
             @Override
@@ -138,30 +269,31 @@ public class FriendRequest extends AppCompatActivity implements MyRecyclerViewRe
             }
         };
 
-
-        request9.add(jsonObjectRequestGETUSERS);
-
-
+        request9.add(jsonObjectRequestALLFRIENDS);
     }
 
-    private void sendRequest(){
-        String url_ADDFRIEND = "http://puigmal.salle.url.edu/api/v2/friends/" + ider;
-
-        JSONObject jsonBodySEARCH = new JSONObject();
+    public void sendMessage( String id_sender, String id_receiver){
+        String url_SENDMESSAGE = "http://puigmal.salle.url.edu/api/v2/messages";
+        JSONObject jsonBodyMESSAGE = new JSONObject();
+        //1866 nosotros, 1607 bonilla  //1034 , 884 , 1329 , 752, 993
         try {
-            jsonBodySEARCH.put("id", ider);
+            jsonBodyMESSAGE.put("content", "HI! ");
+            jsonBodyMESSAGE.put("user_id_send", id_sender);
+            jsonBodyMESSAGE.put("user_id_recived", id_receiver);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        JsonObjectRequest jsonObjectRequestSENDFRIENDREQ = new JsonObjectRequest(Request.Method.POST, url_ADDFRIEND, jsonBodySEARCH,  new Response.Listener<JSONObject>() {
+
+        JsonObjectRequest jsonObjectRequestSENDMESSAGE = new JsonObjectRequest(Request.Method.POST, url_SENDMESSAGE, jsonBodyMESSAGE, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 System.out.println(response);
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                System.out.println("ERROR SENDING ");
+                System.out.println("ERROR SENDING MESSAGE");
             }
         }){
             @Override
@@ -171,7 +303,10 @@ public class FriendRequest extends AppCompatActivity implements MyRecyclerViewRe
                 return heather;
             }
         };
-        request9.add(jsonObjectRequestSENDFRIENDREQ);
+
+        request9.add(jsonObjectRequestSENDMESSAGE);
 
     }
+
+
 }

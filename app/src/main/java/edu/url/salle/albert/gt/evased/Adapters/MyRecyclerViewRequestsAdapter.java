@@ -49,20 +49,7 @@ public class MyRecyclerViewRequestsAdapter extends RecyclerView.Adapter<MyRecycl
         holder.bind(userr);
     }
 
-    public void filtrado(String txtBuscar ){
-        int longitud = txtBuscar.length();
-        if(longitud == 0){
-            mUsers.clear();
-            mUsers.addAll(mUsersOriginal);
-        }
-        else {
-            ArrayList<User> collection = (ArrayList<User>) mUsers.stream().filter(i -> i.getName().toLowerCase().contains(txtBuscar.toLowerCase()))
-                    .collect(Collectors.toList());
-            mUsers.clear();
-            mUsers.addAll(collection);
-        }
-        notifyDataSetChanged();
-    }
+
 
     @Override
     public int getItemCount() {
@@ -74,13 +61,15 @@ public class MyRecyclerViewRequestsAdapter extends RecyclerView.Adapter<MyRecycl
     public class UserHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private User mUs;
         private TextView mUserTextView;
+        private TextView request;
 
 
 
         public UserHolder(View itemView) {
             super(itemView);
             mUserTextView = (TextView) itemView.findViewById(R.id.UserToAccept);
-            //mSendMessageButton = (Button) itemView.findViewById(R.id.request_friendship_button);
+
+            request = (TextView) itemView.findViewById(R.id.accept_friend_button);
             itemView.setOnClickListener(this);
 
         }
@@ -89,6 +78,10 @@ public class MyRecyclerViewRequestsAdapter extends RecyclerView.Adapter<MyRecycl
 
             mUs = user_;
             mUserTextView.setText(mUs.getName());
+            if(mUs.getUserID() != 0) {
+                request.setText("Send Hi!");
+            }
+
 
         }
 

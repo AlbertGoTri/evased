@@ -99,6 +99,7 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
                 messageToSend = findViewById(R.id.newMessageEdittext);
                 //TODO I CHNAGED THis
                 sendMessage(messageToSend.getText().toString());
+
                 updateSharedPreferences();
 
             }
@@ -143,11 +144,13 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        saveAllMessages(SignInUser.getUserID());
+
 
         JsonObjectRequest jsonObjectRequestSENDMESSAGE = new JsonObjectRequest(Request.Method.POST, url_SENDMESSAGE, jsonBodyMESSAGE, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                System.out.println(response);
+
 
             }
         }, new Response.ErrorListener() {
@@ -169,7 +172,7 @@ public class messages_between_two_users_activity extends DrawerActivity implemen
     }
     private void saveAllMessages(int ide){
         String url_GETMESSAGES = "http://puigmal.salle.url.edu/api/v2/messages" + "/" + ide;
-
+        //messs = new ArrayList<>();
 
         JSONObject jsonBodySEARCH = new JSONObject();
         try {
